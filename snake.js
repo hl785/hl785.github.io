@@ -1,168 +1,223 @@
-const board_border = 'black';
-const board_background = "white";
-const snake_col = 'lightblue';
-const snake_border = 'darkblue';
+const GridEnum = { "clear": 0, "wall": 1, "food": 3, "snake": 4 };
+Object.freeze(GridEnum);
 
-let snake = [
-  {x: 200, y: 200},
-  {x: 190, y: 200},
-  {x: 180, y: 200},
-  {x: 170, y: 200},
-  {x: 160, y: 200}
-]
+class SnakeGame {
 
-let score = 0;
-// True if changing direction
-let changing_direction = false;
-// Horizontal velocity
-let food_x;
-let food_y;
-let dx = 10;
-// Vertical velocity
-let dy = 0;
+    constructor(snakeboardHTML,
+                snakeboardHTML_ctx,
+                scoreHTML,
+                board_col = 'white',
+                board_border = 'black',
+                snake_col = 'lightblue',
+                snake_border = 'darkblue',
+                apple_col = 'lightgreen',
+                apple_border = 'darkgreen',
+                wall_col = 'grey',
+                wall_border = 'black'
+    ) {
+        // HTML elements
+        this.snakeboardHTML = snakeboardHTML;
+        this.snakeboardHTML_ctx = snakeboardHTML_ctx;
+        this.scoreHTML = scoreHTML;
 
+        // Colour information
+        this.board_col = board_col;
+        this.board_border = board_border;
+        this.snake_col = snake_col;
+        this.snake_border = snake_border;
+        this.apple_col = apple_col;
+        this.apple_border = apple_border;
+        this.wall_col = wall_col;
+        this.wall_border = wall_border;
 
-// Get the canvas element
-const snakeboard = document.getElementById("snakeboard");
-// Return a two dimensional drawing context
-const snakeboard_ctx = snakeboard.getContext("2d");
-// Start game
-main();
+        // console.log(this.snakeboardHTML.width);
+        // console.log(this.snakeboardHTML.height);
+        if (((this.snakeboardHTML.width % 10) != 0) || ((this.snakeboardHTML.height % 10) != 0)) {
+            console.log('ERROR: There has been an error, inspect javascript.');
+        }
 
-gen_food();
+        this.gridWidth = this.snakeboardHTML.width / 10;
+        this.gridHeight = this.snakeboardHTML.height / 10;
+        // console.log(this.gridWidth);
+        // console.log(this.gridHeight);
+        this.grid = Array(this.gridWidth).fill(0).map(x => Array(this.gridHeight).fill(0));
 
-document.addEventListener("keydown", change_direction);
+        for (let i = 0; i < this.gridWidth; i++) {
+            this.grid[i][0] = 1;
+            this.grid[i][this.gridHeight - 1] = 1;
+        }
 
-// main function called repeatedly to keep the game running
-function main() {
+        for (let i = 0; i < this.gridHeight; i++) {
+            this.grid[0][i] = 1;
+            this.grid[this.gridWidth - 1][i] = 1;
+        }
 
-    if (has_game_ended()) return;
+        let snakeCentX = (this.gridWidth / 2);
+        let snakeCentY = (this.gridHeight / 2);
 
-    changing_direction = false;
-    setTimeout(function onTick() {
-    clear_board();
-    drawFood();
-    move_snake();
-    drawSnake();
-    // Repeat
-    main();
-  }, 100)
-}
+        this.snake = [
+            { x: snakeCentX + 1, y: snakeCentY },
+            { x: snakeCentX, y: snakeCentY },
+            { x: snakeCentX - 1, y: snakeCentY }
+        ];
 
-// draw a border around the canvas
-function clear_board() {
-  //  Select the colour to fill the drawing
-  snakeboard_ctx.fillStyle = board_background;
-  //  Select the colour for the border of the canvas
-  snakeboard_ctx.strokestyle = board_border;
-  // Draw a "filled" rectangle to cover the entire canvas
-  snakeboard_ctx.fillRect(0, 0, snakeboard.width, snakeboard.height);
-  // Draw a "border" around the entire canvas
-  snakeboard_ctx.strokeRect(0, 0, snakeboard.width, snakeboard.height);
-}
+        // this.snake.forEach(function storeSnakePart(part) {           // <-|
+        //     console.log(this);                                       //   |
+        //     this.grid[part.x][part.y] = 3;// GridEnum.snake;         //   |----> Why are these busted? 
+        // });                                                          //   |
+        //                                                              //   |
+        // this.snake.forEach(this.storeSnakePart);                     // <-|
 
-// Draw the snake on the canvas
-function drawSnake() {
-  // Draw each part
-  snake.forEach(drawSnakePart)
-}
+        for (let i = 0; i < this.snake.length; i++) {
+            this.storeSnakePart(this.snake[i]);
+        }
 
-function drawFood() {
-  snakeboard_ctx.fillStyle = 'lightgreen';
-  snakeboard_ctx.strokestyle = 'darkgreen';
-  snakeboard_ctx.fillRect(food_x, food_y, 10, 10);
-  snakeboard_ctx.strokeRect(food_x, food_y, 10, 10);
-}
+        this.genNewFood()
 
-// Draw one snake part
-function drawSnakePart(snakePart) {
+        // console.log(this.grid);
+        this.draw();
 
-  // Set the colour of the snake part
-  snakeboard_ctx.fillStyle = snake_col;
-  // Set the border colour of the snake part
-  snakeboard_ctx.strokestyle = snake_border;
-  // Draw a "filled" rectangle to represent the snake part at the coordinates
-  // the part is located
-  snakeboard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
-  // Draw a border around the snake part
-  snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
-}
+        this.score = 0;
+        this.dirChange = false;
+        this.dx = 1;
+        this.dy = 0;
 
-function has_game_ended() {
-  for (let i = 4; i < snake.length; i++) {
-    if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
-  }
-  const hitLeftWall = snake[0].x < 0;
-  const hitRightWall = snake[0].x > snakeboard.width - 10;
-  const hitToptWall = snake[0].y < 0;
-  const hitBottomWall = snake[0].y > snakeboard.height - 10;
-  return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
-}
+        this.main()
+    }
 
-function random_food(min, max) {
-  return Math.round((Math.random() * (max-min) + min) / 10) * 10;
-}
+    draw() {
+        // Clear old plot
+        this.snakeboardHTML_ctx.fillStyle = this.board_col;
+        this.snakeboardHTML_ctx.strokestyle = this.board_border;
+        this.snakeboardHTML_ctx.fillRect(0, 0, this.snakeboardHTML.width, this.snakeboardHTML.height);
+        this.snakeboardHTML_ctx.strokeRect(0, 0, this.snakeboardHTML.width, this.snakeboardHTML.height);
 
-function gen_food() {
-  // Generate a random number the food x-coordinate
-  food_x = random_food(0, snakeboard.width - 10);
-  // Generate a random number for the food y-coordinate
-  food_y = random_food(0, snakeboard.height - 10);
-  // if the new food location is where the snake currently is, generate a new food location
-  snake.forEach(function has_snake_eaten_food(part) {
-    const has_eaten = part.x == food_x && part.y == food_y;
-    if (has_eaten) gen_food();
-  });
-}
+        // Plot details
+        for (let i = 0; i < this.gridWidth; i++) {
+            for (let j = 0; j < this.gridHeight; j++) {
+                if (this.grid[i][j] == GridEnum.wall) {
+                    this.snakeboardHTML_ctx.fillStyle = this.wall_col;
+                    this.snakeboardHTML_ctx.strokestyle = this.wall_border;
+                    this.snakeboardHTML_ctx.fillRect(10 * i, 10 * j, 10, 10);
+                    this.snakeboardHTML_ctx.strokeRect(10 * i, 10 * j, 10, 10);
+                } else if (this.grid[i][j] == GridEnum.food) {
+                    this.snakeboardHTML_ctx.fillStyle = this.apple_col;
+                    this.snakeboardHTML_ctx.strokestyle = this.apple_border;
+                    this.snakeboardHTML_ctx.fillRect(10 * i, 10 * j, 10, 10);
+                    this.snakeboardHTML_ctx.strokeRect(10 * i, 10 * j, 10, 10);
+                } else if (this.grid[i][j] == GridEnum.snake) {
+                    this.snakeboardHTML_ctx.fillStyle = this.snake_col;
+                    this.snakeboardHTML_ctx.strokestyle = this.snake_border;
+                    this.snakeboardHTML_ctx.fillRect(10 * i, 10 * j, 10, 10);
+                    this.snakeboardHTML_ctx.strokeRect(10 * i, 10 * j, 10, 10);
+                }
+            }
+        }
+    }
 
-function change_direction(event) {
-  const LEFT_KEY = 37;
-  const RIGHT_KEY = 39;
-  const UP_KEY = 38;
-  const DOWN_KEY = 40;
-  
-// Prevent the snake from reversing
+    storeSnakePart(part) {
+        this.grid[part.x][part.y] = GridEnum.snake;
+    }
 
-  if (changing_direction) return;
-  changing_direction = true;
-  const keyPressed = event.keyCode;
-  const goingUp = dy === -10;
-  const goingDown = dy === 10;
-  const goingRight = dx === 10;
-  const goingLeft = dx === -10;
-  if (keyPressed === LEFT_KEY && !goingRight) {
-    dx = -10;
-    dy = 0;
-  }
-  if (keyPressed === UP_KEY && !goingDown) {
-    dx = 0;
-    dy = -10;
-  }
-  if (keyPressed === RIGHT_KEY && !goingLeft) {
-    dx = 10;
-    dy = 0;
-  }
-  if (keyPressed === DOWN_KEY && !goingUp) {
-    dx = 0;
-    dy = 10;
-  }
-}
+    genNewFood() {
+        let foundEmptySlot = false;
+        while (!foundEmptySlot) {
+            let x = Math.round(Math.random() * (this.gridWidth - 1));
+            let y = Math.round(Math.random() * (this.gridHeight - 1));
 
-function move_snake() {
-  // Create the new Snake's head
-  const head = {x: snake[0].x + dx, y: snake[0].y + dy};
-  // Add the new head to the beginning of snake body
-  snake.unshift(head);
-  const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
-  if (has_eaten_food) {
-    // Increase score
-    score += 10;
-    // Display score on screen
-    document.getElementById('score').innerHTML = score;
-    // Generate new food location
-    gen_food();
-  } else {
-    // Remove the last part of snake body
-    snake.pop();
-  }
+            if (this.grid[x][y] == GridEnum.clear) {
+                foundEmptySlot = true;
+                this.grid[x][y] = GridEnum.food;
+            }
+        }
+    }
+
+    main() {
+        if (this.gameOver()) {
+            return;
+        }
+
+        this.moveSnake();
+        this.draw();
+        this.dirChange = false;
+        setTimeout(
+            // function onTick() {
+            //     // for (var i = 0; i < localStorage.length; i++){
+            //     //     console.log(localStorage[i])
+            //     // }
+            //     // console.log('What???')
+            //     // this.moveSnake();
+            //     // this.draw();
+            //     // Repeat
+            //     this.main();
+            // }
+            this.main
+            , 100)
+    }
+
+    gameOver() {
+        // Head hit tail
+        for (let i = 4; i < this.snake.length; i++) {
+            if ((this.snake[0].x == this.snake[i].x) && (this.snake[0].y == this.snake[i].y)) {
+                return true
+            }
+        }
+
+        // Head hit wall
+        if (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.wall) {
+            return true;
+        }
+        return false
+    }
+
+    //   change_direction(event) {
+    //     const LEFT_KEY = 37;
+    //     const RIGHT_KEY = 39;
+    //     const UP_KEY = 38;
+    //     const DOWN_KEY = 40;
+
+    //   // Prevent the snake from reversing
+
+    //     if (this.changing_direction) return;
+    //     this.changing_direction = true;
+    //     const keyPressed = event.keyCode;
+    //     const goingUp = dy === -10;
+    //     const goingDown = dy === 10;
+    //     const goingRight = dx === 10;
+    //     const goingLeft = dx === -10;
+    //     if (keyPressed === LEFT_KEY && !goingRight) {
+    //         this.dx = -10;
+    //         this.dy = 0;
+    //     }
+    //     if (keyPressed === UP_KEY && !goingDown) {
+    //         this.dx = 0;
+    //         this.dy = -10;
+    //     }
+    //     if (keyPressed === RIGHT_KEY && !goingLeft) {
+    //         this.dx = 10;
+    //         this.dy = 0;
+    //     }
+    //     if (keyPressed === DOWN_KEY && !goingUp) {
+    //         this.dx = 0;
+    //         this.dy = 10;
+    //     }
+    //   }
+
+    moveSnake() {
+        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+        this.snake.unshift(head);
+        const hasEaten = (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.food);
+        
+        for (let i = 0; i < this.snake.length; i++) {
+            this.storeSnakePart(this.snake[i]);
+        }
+
+        if (hasEaten) {
+            this.score += 10;
+            this.scoreHTML.innerHTML = this.score;
+            genNewFood();
+        } else {
+            this.snake.pop();
+        }
+    }
 }
