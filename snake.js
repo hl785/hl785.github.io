@@ -61,18 +61,10 @@ class SnakeGame {
             { x: snakeCentX - 1, y: snakeCentY }
         ];
 
-        // this.snake.forEach(function storeSnakePart(part) {           // <-|
-        //     console.log(this);                                       //   |
-        //     this.grid[part.x][part.y] = 3;// GridEnum.snake;         //   |----> Why are these busted? 
-        // });                                                          //   |
-        //                                                              //   |
-        // this.snake.forEach(this.storeSnakePart);                     // <-|
-
-        for (let i = 0; i < this.snake.length; i++) {
-            this.storeSnakePart(this.snake[i]);
-        }
+        this.snake.forEach(this.storeSnakePart.bind(this));
 
         this.genNewFood()
+        // this.grid[snakeCentX + 10][snakeCentY] = GridEnum.food
 
         // console.log(this.grid);
         this.draw();
@@ -140,20 +132,8 @@ class SnakeGame {
         this.moveSnake();
         this.draw();
         this.dirChange = false;
-        
-        setTimeout(
-            // function onTick() {
-            //     // for (var i = 0; i < localStorage.length; i++){
-            //     //     console.log(localStorage[i])
-            //     // }
-            //     // console.log('What???')
-            //     // this.moveSnake();
-            //     // this.draw();
-            //     // Repeat
-            //     this.main();
-            // }.bind(this)
-            this.main.bind(this)
-            , 100)
+
+        setTimeout(this.main.bind(this), 100)
     }
 
     gameOver() {
@@ -165,61 +145,63 @@ class SnakeGame {
         }
 
         // Head hit wall
+        console.log(this.grid[this.snake[0].x][this.snake[0].y])
         if (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.wall) {
+            console.log('Dead')
             return true;
         }
         return false
     }
 
-    //   change_direction(event) {
-    //     const LEFT_KEY = 37;
-    //     const RIGHT_KEY = 39;
-    //     const UP_KEY = 38;
-    //     const DOWN_KEY = 40;
+    changeDirFn(event) {
+        const LEFT_KEY = 37;
+        const RIGHT_KEY = 39;
+        const UP_KEY = 38;
+        const DOWN_KEY = 40;
 
-    //   // Prevent the snake from reversing
-
-    //     if (this.changing_direction) return;
-    //     this.changing_direction = true;
-    //     const keyPressed = event.keyCode;
-    //     const goingUp = dy === -10;
-    //     const goingDown = dy === 10;
-    //     const goingRight = dx === 10;
-    //     const goingLeft = dx === -10;
-    //     if (keyPressed === LEFT_KEY && !goingRight) {
-    //         this.dx = -10;
-    //         this.dy = 0;
-    //     }
-    //     if (keyPressed === UP_KEY && !goingDown) {
-    //         this.dx = 0;
-    //         this.dy = -10;
-    //     }
-    //     if (keyPressed === RIGHT_KEY && !goingLeft) {
-    //         this.dx = 10;
-    //         this.dy = 0;
-    //     }
-    //     if (keyPressed === DOWN_KEY && !goingUp) {
-    //         this.dx = 0;
-    //         this.dy = 10;
-    //     }
-    //   }
+        if (this.dirChange) {
+            return;
+        }
+        
+        this.dirChange = true;
+        const keyPressed = event.keyCode;
+        const goingUp    = (this.dy == -1);
+        const goingDown  = (this.dy == 1);
+        const goingRight = (this.dx == 1);
+        const goingLeft  = (this.dx == -1);
+        
+        if ((keyPressed == LEFT_KEY) && (!goingRight)) {
+            this.dx = -1;
+            this.dy = 0;
+        }
+        if ((keyPressed == UP_KEY) && (!goingDown)) {
+            this.dx = 0;
+            this.dy = -1;
+        }
+        if ((keyPressed == RIGHT_KEY) && (!goingLeft)) {
+            this.dx = 1;
+            this.dy = 0;
+        }
+        if ((keyPressed == DOWN_KEY) && (!goingUp)) {
+            this.dx = 0;
+            this.dy = 1;
+        }
+    }
 
     moveSnake() {
         const head = { x: this.snake[0].x + this.dx, y: this.snake[0].y + this.dy };
         this.snake.unshift(head);
         const hasEaten = (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.food);
-        
-        for (let i = 0; i < this.snake.length; i++) {
-            this.storeSnakePart(this.snake[i]);
-        }
+
+        this.snake.forEach(this.storeSnakePart.bind(this));
 
         if (hasEaten) {
             this.score += 10;
             this.scoreHTML.innerHTML = this.score;
-            genNewFood();
+            this.genNewFood();
         } else {
             const part = this.snake[this.snake.length - 1]
-            this.grid[part.x][part.y] = GridEnum.clear; 
+            this.grid[part.x][part.y] = GridEnum.clear;
             this.snake.pop();
         }
     }

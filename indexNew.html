@@ -12,7 +12,6 @@
     <!-- Location of elements -->
     <style>
       #snakeboard {
-        /* position: absolute; */
         position: relative;
         top: 50%;
         left: 50%;
@@ -27,20 +26,12 @@
 
   <!-- JavaScript source -->
   <script src="snake.js"> </script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.3.2/math.js"></script> -->
   <script> 
-    // Get the canvas element
     const snakeboardHTML = document.getElementById("snakeboard");
-    // Return a two dimensional drawing context
     const snakeboardHTML_ctx = snakeboard.getContext("2d");
-
     const scoreHTML = document.getElementById('score');
 
     let game = new SnakeGame(snakeboardHTML, snakeboardHTML_ctx, scoreHTML);
-
-    // game.gen_food();
-    // game.main();
-
-    // document.addEventListener("keydown", game.change_direction);
+    document.addEventListener("keydown", game.changeDirFn.bind(game));
   </script>
 </html>
