@@ -144,10 +144,9 @@ class SnakeGame {
             }
         }
 
+        // TODO: fix
         // Head hit wall
-        console.log(this.grid[this.snake[0].x][this.snake[0].y])
         if (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.wall) {
-            console.log('Dead')
             return true;
         }
         return false
@@ -193,7 +192,9 @@ class SnakeGame {
         this.snake.unshift(head);
         const hasEaten = (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.food);
 
-        this.snake.forEach(this.storeSnakePart.bind(this));
+        if (this.grid[this.snake[0].x][this.snake[0].y] != GridEnum.wall) {
+            this.snake.forEach(this.storeSnakePart.bind(this));
+        }
 
         if (hasEaten) {
             this.score += 10;
