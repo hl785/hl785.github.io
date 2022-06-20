@@ -140,6 +140,7 @@ class SnakeGame {
         this.moveSnake();
         this.draw();
         this.dirChange = false;
+        
         setTimeout(
             // function onTick() {
             //     // for (var i = 0; i < localStorage.length; i++){
@@ -150,8 +151,8 @@ class SnakeGame {
             //     // this.draw();
             //     // Repeat
             //     this.main();
-            // }
-            this.main
+            // }.bind(this)
+            this.main.bind(this)
             , 100)
     }
 
@@ -204,7 +205,7 @@ class SnakeGame {
     //   }
 
     moveSnake() {
-        const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+        const head = { x: this.snake[0].x + this.dx, y: this.snake[0].y + this.dy };
         this.snake.unshift(head);
         const hasEaten = (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.food);
         
@@ -217,6 +218,8 @@ class SnakeGame {
             this.scoreHTML.innerHTML = this.score;
             genNewFood();
         } else {
+            const part = this.snake[this.snake.length - 1]
+            this.grid[part.x][part.y] = GridEnum.clear; 
             this.snake.pop();
         }
     }
