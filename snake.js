@@ -73,6 +73,7 @@ class SnakeGame {
         this.dirChange = false;
         this.dx = 1;
         this.dy = 0;
+        this.gameOver = false
 
         this.main()
     }
@@ -125,7 +126,8 @@ class SnakeGame {
     }
 
     main() {
-        if (this.gameOver()) {
+        console.log(this.gameOver)
+        if (this.gameOver) {
             return;
         }
 
@@ -136,20 +138,12 @@ class SnakeGame {
         setTimeout(this.main.bind(this), 100)
     }
 
-    gameOver() {
-        // Head hit tail
+    hitTail() {
         for (let i = 4; i < this.snake.length; i++) {
             if ((this.snake[0].x == this.snake[i].x) && (this.snake[0].y == this.snake[i].y)) {
-                return true
+                this.gameOver = true
             }
         }
-
-        // TODO: fix
-        // Head hit wall
-        if (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.wall) {
-            return true;
-        }
-        return false
     }
 
     changeDirFn(event) {
@@ -192,9 +186,13 @@ class SnakeGame {
         this.snake.unshift(head);
         const hasEaten = (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.food);
 
-        if (this.grid[this.snake[0].x][this.snake[0].y] != GridEnum.wall) {
-            this.snake.forEach(this.storeSnakePart.bind(this));
+        this.hitTail()
+
+        if (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.wall) {
+            this.gameOver = true
         }
+
+        this.snake.forEach(this.storeSnakePart.bind(this));
 
         if (hasEaten) {
             this.score += 10;
