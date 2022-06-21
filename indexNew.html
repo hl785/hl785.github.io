@@ -6,7 +6,10 @@
 
   <body>
     <!-- Elements on page -->
-    <div id="score">0</div>
+    <div class="parent" id="scoreEnsemble">
+      <div class="child" id="scoreText">This website is Snake protected, score 50 to proceed. Score: </div>
+      <div class="child" id="score">0</div>
+    </div>
     <canvas id="snakeboard" width="1000" height="600"></canvas>
 
     <!-- Location of elements -->
@@ -17,9 +20,13 @@
         left: 50%;
         transform: translate(-50%, 0%);
       }
-      #score {
+      #scoreEnsemble {
         text-align: center;
-        font-size: 100px;
+        font-size: 40px;
+      }
+      .child {
+        display: inline-block;
+        vertical-align: middle;
       }
     </style>
   </body>
@@ -29,13 +36,13 @@
   <script> 
     const snakeboardHTML = document.getElementById("snakeboard");
     const snakeboardHTML_ctx = snakeboard.getContext("2d");
-    const scoreHTML = document.getElementById('score');
+    const scoreHTML = document.getElementById("score");
 
     let onScoreLam = ((score) => {
       if (score >= 50) {
         // console.log('Win detected');
         snakeboardHTML.style.display = "none";
-        scoreHTML.style.display = "none";
+        document.getElementById("scoreEnsemble").style.display = "none";
         return true;
       }
       return false;
