@@ -11,6 +11,7 @@
       <div class="child" id="score">0</div>
     </div>
     <canvas id="snakeboard" width="1000" height="600"></canvas>
+    <div id="infoText">(won't work on mobile, arrow keys to control, F5 to restart)</div>
     <div id="websiteEnsemble">
       <h1>Henry Edward Lockyer</h1>
       <dl>
@@ -43,6 +44,10 @@
         transform: translate(-50%, 0%);
       }
       #scoreEnsemble {
+        text-align: center;
+        font-size: 40px;
+      }
+      #infoText {
         text-align: center;
         font-size: 40px;
       }
@@ -307,6 +312,7 @@ class SnakeGame {
         // console.log('Win detected');
         snakeboardHTML.style.display = "none";
         document.getElementById("scoreEnsemble").style.display = "none";
+        document.getElementById("infoText").style.display = "none";
         document.getElementById("websiteEnsemble").style.display = "initial";
         return true;
       }
