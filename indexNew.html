@@ -6,12 +6,15 @@
 
   <body>
     <!-- Elements on page -->
+    <!-- Snake -->
     <div class="parent" id="scoreEnsemble">
       <div class="child" id="scoreText">This website is Snake protected, score 50 to proceed. Score: </div>
       <div class="child" id="score">0</div>
     </div>
     <canvas id="snakeboard" width="1000" height="600"></canvas>
     <div id="infoText">(won't work on mobile, arrow keys to control, F5 to restart)</div>
+    <!-- End of Snake -->
+    <!-- Website (Uni autoGen) -->
     <div id="websiteEnsemble">
       <h1>Henry Edward Lockyer</h1>
       <dl>
@@ -34,9 +37,11 @@
 
       <p class="footer">Go to the <a href="http://www.bath.ac.uk/">University of Bath</a> Home Page.</p>
     </div>
+    <!-- End of Website (Uni autoGen) -->
 
-    <!-- Location of elements -->
+    <!-- Style -->
     <style>
+      /* Snake functionality */
       #snakeboard {
         position: relative;
         top: 50%;
@@ -59,6 +64,7 @@
         display: none;
       }
 
+      /* Uni autoGen */
       h1 { border-bottom: medium solid; }
       .footer { border-top: thin solid; }
     
@@ -80,12 +86,16 @@
       h1 { font-weight: 100; letter-spacing: 0.5em; }
       dt { font-weight: bold; display: run-in; }
       .footer { font-size: smaller; font-style: italic; }
+      /* End of Uni autoGen */
     </style>
   </body>
 
-  <!-- JavaScript source -->
+  <!-- JavaScript sources -->
   <script src="snake.js"> </script>
+  <script src="password.js"> </script>
+  <!-- JavaScript -->
   <script> 
+    // Snake functionality
     const snakeboardHTML = document.getElementById("snakeboard");
     const snakeboardHTML_ctx = snakeboard.getContext("2d");
     const scoreHTML = document.getElementById("score");
@@ -109,5 +119,6 @@
 
     let game = new SnakeGame(snakeboardHTML, snakeboardHTML_ctx, scoreHTML, onScoreLam, onOverLam);
     document.addEventListener("keydown", game.changeDirFn.bind(game));
+    // Password functionality
   </script>
 </html>
