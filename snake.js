@@ -6,6 +6,8 @@ class SnakeGame {
     constructor(snakeboardHTML,
                 snakeboardHTML_ctx,
                 scoreHTML,
+                onScoreLam,
+                onOverLam,
                 board_col = 'white',
                 board_border = 'black',
                 snake_col = 'lightblue',
@@ -19,6 +21,10 @@ class SnakeGame {
         this.snakeboardHTML = snakeboardHTML;
         this.snakeboardHTML_ctx = snakeboardHTML_ctx;
         this.scoreHTML = scoreHTML;
+
+        // Lambdas
+        this.onOverLam = onOverLam;
+        this.onScoreLam = onScoreLam;
 
         // Colour information
         this.board_col = board_col;
@@ -126,8 +132,8 @@ class SnakeGame {
     }
 
     main() {
-        console.log(this.gameOver)
         if (this.gameOver) {
+            this.onOverLam()
             return;
         }
 
@@ -198,6 +204,9 @@ class SnakeGame {
             this.score += 10;
             this.scoreHTML.innerHTML = this.score;
             this.genNewFood();
+            if (this.onScoreLam(this.score)) {
+                this.gameOver = true;
+            }
         } else {
             const part = this.snake[this.snake.length - 1]
             this.grid[part.x][part.y] = GridEnum.clear;

@@ -31,7 +31,22 @@
     const snakeboardHTML_ctx = snakeboard.getContext("2d");
     const scoreHTML = document.getElementById('score');
 
-    let game = new SnakeGame(snakeboardHTML, snakeboardHTML_ctx, scoreHTML);
+    let onScoreLam = ((score) => {
+      if (score >= 50) {
+        // console.log('Win detected');
+        snakeboardHTML.style.display = "none";
+        scoreHTML.style.display = "none";
+        return true;
+      }
+      return false;
+    });
+
+    let onOverLam = (() => {
+      // console.log('Game over detected');
+      document.removeEventListener("keydown", game.changeDirFn.bind(game))
+    });
+
+    let game = new SnakeGame(snakeboardHTML, snakeboardHTML_ctx, scoreHTML, onScoreLam, onOverLam);
     document.addEventListener("keydown", game.changeDirFn.bind(game));
   </script>
 </html>
