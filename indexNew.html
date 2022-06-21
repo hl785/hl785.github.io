@@ -114,11 +114,23 @@
 
     let onOverLam = (() => {
       // console.log('Game over detected');
-      document.removeEventListener("keydown", game.changeDirFn.bind(game))
+      document.removeEventListener("keydown", game.changeDirFn.bind(game));
     });
 
     let game = new SnakeGame(snakeboardHTML, snakeboardHTML_ctx, scoreHTML, onScoreLam, onOverLam);
     document.addEventListener("keydown", game.changeDirFn.bind(game));
+    
     // Password functionality
+    let onSuccessLam = (() => {
+      snakeboardHTML.style.display = "none";
+      document.getElementById("scoreEnsemble").style.display = "none";
+      document.getElementById("infoText").style.display = "none";
+      document.getElementById("websiteEnsemble").style.display = "initial";
+      game.gameOver = true;
+      document.removeEventListener("keydown", manager.keyPress.bind(manager));
+    });
+
+    let manager = new PasswordManager(onSuccessLam);
+    document.addEventListener("keydown", manager.keyPress.bind(manager));
   </script>
 </html>

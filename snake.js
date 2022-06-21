@@ -1,4 +1,4 @@
-const GridEnum = { "clear": 0, "wall": 1, "food": 3, "snake": 4 };
+const GridEnum = { "clear": 0, "wall": 1, "food": 2, "snake": 3 };
 Object.freeze(GridEnum);
 
 class SnakeGame {
@@ -69,8 +69,8 @@ class SnakeGame {
 
         this.snake.forEach(this.storeSnakePart.bind(this));
 
-        this.genNewFood()
-        // this.grid[snakeCentX + 10][snakeCentY] = GridEnum.food
+        this.genNewFood();
+        // this.grid[snakeCentX + 10][snakeCentY] = GridEnum.food;
 
         // console.log(this.grid);
         this.draw();
@@ -79,9 +79,9 @@ class SnakeGame {
         this.dirChange = false;
         this.dx = 1;
         this.dy = 0;
-        this.gameOver = false
+        this.gameOver = false;
 
-        this.main()
+        this.main();
     }
 
     draw() {
@@ -133,7 +133,7 @@ class SnakeGame {
 
     main() {
         if (this.gameOver) {
-            this.onOverLam()
+            this.onOverLam();
             return;
         }
 
@@ -141,13 +141,13 @@ class SnakeGame {
         this.draw();
         this.dirChange = false;
 
-        setTimeout(this.main.bind(this), 100)
+        setTimeout(this.main.bind(this), 100);
     }
 
     hitTail() {
         for (let i = 4; i < this.snake.length; i++) {
             if ((this.snake[0].x == this.snake[i].x) && (this.snake[0].y == this.snake[i].y)) {
-                this.gameOver = true
+                this.gameOver = true;
             }
         }
     }
@@ -192,10 +192,10 @@ class SnakeGame {
         this.snake.unshift(head);
         const hasEaten = (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.food);
 
-        this.hitTail()
+        this.hitTail();
 
         if (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.wall) {
-            this.gameOver = true
+            this.gameOver = true;
         }
 
         this.snake.forEach(this.storeSnakePart.bind(this));
@@ -208,7 +208,7 @@ class SnakeGame {
                 this.gameOver = true;
             }
         } else {
-            const part = this.snake[this.snake.length - 1]
+            const part = this.snake[this.snake.length - 1];
             this.grid[part.x][part.y] = GridEnum.clear;
             this.snake.pop();
         }
