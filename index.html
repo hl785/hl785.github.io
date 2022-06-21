@@ -6,12 +6,15 @@
 
   <body>
     <!-- Elements on page -->
+    <!-- Snake -->
     <div class="parent" id="scoreEnsemble">
       <div class="child" id="scoreText">This website is Snake protected, score 50 to proceed. Score: </div>
       <div class="child" id="score">0</div>
     </div>
     <canvas id="snakeboard" width="1000" height="600"></canvas>
     <div id="infoText">(won't work on mobile, arrow keys to control, F5 to restart)</div>
+    <!-- End of Snake -->
+    <!-- Website (Uni autoGen) -->
     <div id="websiteEnsemble">
       <h1>Henry Edward Lockyer</h1>
       <dl>
@@ -34,9 +37,11 @@
 
       <p class="footer">Go to the <a href="http://www.bath.ac.uk/">University of Bath</a> Home Page.</p>
     </div>
+    <!-- End of Website (Uni autoGen) -->
 
-    <!-- Location of elements -->
+    <!-- Style -->
     <style>
+      /* Snake functionality */
       #snakeboard {
         position: relative;
         top: 50%;
@@ -59,6 +64,7 @@
         display: none;
       }
 
+      /* Uni autoGen */
       h1 { border-bottom: medium solid; }
       .footer { border-top: thin solid; }
     
@@ -80,12 +86,13 @@
       h1 { font-weight: 100; letter-spacing: 0.5em; }
       dt { font-weight: bold; display: run-in; }
       .footer { font-size: smaller; font-style: italic; }
+      /* End of Uni autoGen */
     </style>
   </body>
 
-  <!-- JavaScript source -->
-  <script> 
-const GridEnum = { "clear": 0, "wall": 1, "food": 3, "snake": 4 };
+  <!-- JavaScript sources -->
+  <script>
+const GridEnum = { "clear": 0, "wall": 1, "food": 2, "snake": 3 };
 Object.freeze(GridEnum);
 
 class SnakeGame {
@@ -156,8 +163,8 @@ class SnakeGame {
 
         this.snake.forEach(this.storeSnakePart.bind(this));
 
-        this.genNewFood()
-        // this.grid[snakeCentX + 10][snakeCentY] = GridEnum.food
+        this.genNewFood();
+        // this.grid[snakeCentX + 10][snakeCentY] = GridEnum.food;
 
         // console.log(this.grid);
         this.draw();
@@ -166,9 +173,9 @@ class SnakeGame {
         this.dirChange = false;
         this.dx = 1;
         this.dy = 0;
-        this.gameOver = false
+        this.gameOver = false;
 
-        this.main()
+        this.main();
     }
 
     draw() {
@@ -220,7 +227,7 @@ class SnakeGame {
 
     main() {
         if (this.gameOver) {
-            this.onOverLam()
+            this.onOverLam();
             return;
         }
 
@@ -228,13 +235,13 @@ class SnakeGame {
         this.draw();
         this.dirChange = false;
 
-        setTimeout(this.main.bind(this), 100)
+        setTimeout(this.main.bind(this), 100);
     }
 
     hitTail() {
         for (let i = 4; i < this.snake.length; i++) {
             if ((this.snake[0].x == this.snake[i].x) && (this.snake[0].y == this.snake[i].y)) {
-                this.gameOver = true
+                this.gameOver = true;
             }
         }
     }
@@ -279,10 +286,10 @@ class SnakeGame {
         this.snake.unshift(head);
         const hasEaten = (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.food);
 
-        this.hitTail()
+        this.hitTail();
 
         if (this.grid[this.snake[0].x][this.snake[0].y] == GridEnum.wall) {
-            this.gameOver = true
+            this.gameOver = true;
         }
 
         this.snake.forEach(this.storeSnakePart.bind(this));
@@ -295,14 +302,48 @@ class SnakeGame {
                 this.gameOver = true;
             }
         } else {
-            const part = this.snake[this.snake.length - 1]
+            const part = this.snake[this.snake.length - 1];
             this.grid[part.x][part.y] = GridEnum.clear;
             this.snake.pop();
         }
     }
 }
   </script>
+  <script>
+class PasswordManager {
+    constructor(onSuccessLam, maxStore = 20, passHash = 1372867542134400){
+        this.onSuccessLam = onSuccessLam;
+        this.maxStore = maxStore;
+        this.passHash = passHash;
+        this.store = [];
+    }
+
+    keyPress(event) {
+        const newVal = { val: event.keyCode };
+        this.store.unshift(newVal);
+
+        if (this.store.length > this.maxStore) {
+            this.store.pop();
+        }
+
+        for (let i = 0; i < this.store.length; i++) {
+            let val = 1;
+            for (let j = 0; j < i + 1; j++) {
+                val = val * this.store[j].val;
+            }
+            
+            if (val == this.passHash) {
+                // console.log('Correct')
+                this.onSuccessLam();
+                return;
+            }
+        }
+    }
+}
+  </script>
+  <!-- JavaScript -->
   <script> 
+    // Snake functionality
     const snakeboardHTML = document.getElementById("snakeboard");
     const snakeboardHTML_ctx = snakeboard.getContext("2d");
     const scoreHTML = document.getElementById("score");
@@ -321,10 +362,23 @@ class SnakeGame {
 
     let onOverLam = (() => {
       // console.log('Game over detected');
-      document.removeEventListener("keydown", game.changeDirFn.bind(game))
+      document.removeEventListener("keydown", game.changeDirFn.bind(game));
     });
 
     let game = new SnakeGame(snakeboardHTML, snakeboardHTML_ctx, scoreHTML, onScoreLam, onOverLam);
     document.addEventListener("keydown", game.changeDirFn.bind(game));
+    
+    // Password functionality
+    let onSuccessLam = (() => {
+      snakeboardHTML.style.display = "none";
+      document.getElementById("scoreEnsemble").style.display = "none";
+      document.getElementById("infoText").style.display = "none";
+      document.getElementById("websiteEnsemble").style.display = "initial";
+      game.gameOver = true;
+      document.removeEventListener("keydown", manager.keyPress.bind(manager));
+    });
+
+    let manager = new PasswordManager(onSuccessLam);
+    document.addEventListener("keydown", manager.keyPress.bind(manager));
   </script>
 </html>
