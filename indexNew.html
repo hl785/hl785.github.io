@@ -11,6 +11,28 @@
       <div class="child" id="score">0</div>
     </div>
     <canvas id="snakeboard" width="1000" height="600"></canvas>
+    <div id="websiteEnsemble">
+      <h1>Henry Edward Lockyer</h1>
+      <dl>
+        <dt>Full Name: </dt> <dd>Mr Henry Edward Lockyer</dd>
+        <dt>Department: </dt> <dd>Dept of Mathematical Sciences</dd>
+        <dt>Job Title: </dt> <dd>Integrated PhD Statistical Applied Mathematics</dd>
+        <dt>Telephone: </dt> <dd>+44 1225 388388</dd>
+        <dt>Fax: </dt> <dd>n/a</dd>
+        <dt>Mobile: </dt> <dd>n/a</dd>
+        <dt>E-mail Address: </dt> <dd><a href="mailto:hl785@bath.ac.uk">hl785@bath.ac.uk</a></dd>
+        <dt>Postal Address: </dt> <dd><address>
+          Mr Henry Edward Lockyer<br>
+          Dept of Mathematical Sciences<br>
+          University of Bath<br>
+          Bath<br>
+          BA2 7AY<br>
+          United Kingdom<br>
+        </address></dd>
+      </dl>
+
+      <p class="footer">Go to the <a href="http://www.bath.ac.uk/">University of Bath</a> Home Page.</p>
+    </div>
 
     <!-- Location of elements -->
     <style>
@@ -28,6 +50,31 @@
         display: inline-block;
         vertical-align: middle;
       }
+      #websiteEnsemble{
+        display: none;
+      }
+
+      h1 { border-bottom: medium solid; }
+      .footer { border-top: thin solid; }
+    
+      /* Colours */
+      body { background: white; color: black; }
+      :link { background: transparent; color: blue; }
+      :visited { background: transparent; color: purple; }
+      :link:hover, :visited:hover, :link:active, :visited:active
+        { background: transparent; color: red; }
+      h1 { background: transparent; color: #00eeee; border-color: #000000; }
+      dt { background: transparent; color: #00eeee; }
+
+      /* Paddings and margins */
+      .footer { padding: 0.1em 0.2em; }
+      dt { margin-top: 0.5em; }
+
+      /* Fonts */
+      body { font-family: Verdana, Arial, sans-serif; }
+      h1 { font-weight: 100; letter-spacing: 0.5em; }
+      dt { font-weight: bold; display: run-in; }
+      .footer { font-size: smaller; font-style: italic; }
     </style>
   </body>
 
@@ -43,6 +90,7 @@
         // console.log('Win detected');
         snakeboardHTML.style.display = "none";
         document.getElementById("scoreEnsemble").style.display = "none";
+        document.getElementById("websiteEnsemble").style.display = "initial";
         return true;
       }
       return false;
