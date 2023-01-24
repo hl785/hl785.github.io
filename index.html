@@ -16,11 +16,19 @@
       font-family: "Inconsolata", sans-serif;
     }
 
-    .bgimg {
+    .bgImg {
       background-position: center;
       background-size: cover;
       background-image: url("images/AdobeStock_539658418.svg");
       min-height: 100%;
+    }
+
+    .fixBgImg {
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url("images/AdobeStock_443888514.svg");
     }
 
     .menu {
@@ -35,6 +43,10 @@
       min-width: 15%;
       aspect-ratio: 1;
       border-radius: 50%;
+      margin-top: 2.5%;
+      margin-bottom: 2.5%;
+      margin-right: 2.5%;
+      margin-left: 2.5%;
     }
 
     .sambaLogo {
@@ -44,6 +56,19 @@
       min-height: 20%;
       min-width: 15%;
       aspect-ratio: 1;
+      border-radius: 50%;
+      margin-top: 2.5%;
+      margin-bottom: 2.5%;
+      margin-right: 2.5%;
+      margin-left: 2.5%;
+    }
+
+    .grey {
+      /* filter:grayscale(100%); */
+    }
+
+    .noGrey {
+      filter:grayscale(0%);
     }
   </style>
 </head>
@@ -54,7 +79,7 @@
   <div class="w3-top">
     <div class="w3-row w3-padding w3-black">
       <div class="w3-col", style="width:calc(100% / 6)">
-        <a href="#" class="w3-button w3-block w3-black", style="width:90%">Home</a>
+        <a href="#profile" class="w3-button w3-block w3-black", style="width:90%">Profile</a>
       </div>
       <div class="w3-col", style="width:calc(100% / 6)">
         <a href="" class="w3-button w3-block w3-black", style="width:90%">Projects</a>
@@ -72,32 +97,36 @@
   </div>
 
   <!-- Header with image -->
-  <header class="bgimg w3-display-container" id="home">
-    <div class="profilePic w3-display-bottomleft w3-center w3-padding-large"></div>
+  <header class="bgImg w3-display-container" id="home">
+    <a href="#" class="profilePic w3-display-bottomleft w3-center w3-padding-large"></a>
     <div class="w3-display-middle w3-center">
       <span class="w3-tag" style="font-size:90px">Henry Lockyer</span>
     </div>
-    <div class="sambaLogo w3-display-bottomright w3-center w3-padding-large"></div>
+    <a href="https://samba.ac.uk/" class="sambaLogo w3-display-bottomright w3-center w3-padding-large"></a>
   </header>
 
   <!-- Add a background color and large text to the whole page -->
-  <div class="w3-sand w3-grayscale w3-large">
+  <div class="w3-sand w3-large grey fixBgImg">
 
     <!-- About Container -->
-    <div class="w3-container" id="about">
-      <div class="w3-content" style="max-width:700px">
-        <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">ABOUT THE CAFE</span></h5>
-        <p>The Cafe was founded in blabla by Mr. Smith in lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-          do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>In addition to our full espresso and brew bar menu, we serve fresh made-to-order breakfast and lunch
-          sandwiches, as well as a selection of sides and salads and other good stuff.</p>
+    <div class="w3-container" id="profile">
+      <div class="w3-content w3-sand noGrey" style="max-width:700px">
+        <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">BRIEF BIOGRAPHY</span></h5>
+        <p class="w3-card w3-center w3-padding-64">
+          I am a mathematics PhD student studying at the <a href="https://samba.ac.uk/">SAMBa CDT</a> of the 
+          <a href="https://www.bath.ac.uk/">University of Bath</a>. My supervisors are 
+          <a href="https://www.pranavsingh.co.uk/"> Dr Pranav Singh</a>, 
+          <a href="https://people.bath.ac.uk/lmk54/">Dr Lisa Kreusser</a> and 
+          <a href="https://people.bath.ac.uk/em459/">Dr Eike Müller</a>.
+           <br><br> Text
+
+        </p>
         <div class="w3-panel w3-leftbar">
           <p><i>"Use products from nature for what it's worth - but never too early, nor too late." Fresh is the new
               sweet.</i></p>
           <p>Chef, Coffeeist and Owner: Liam Brown</p>
         </div>
-        <img src="images/AdobeStock_164451366.svg" style="width:100%;max-width:1000px" class="w3-margin-top">
+        <img src="images/AdobeStock_443888514.svg" style="width:100%;max-width:1000px" class="w3-margin-top">
         <p><strong>Opening hours:</strong> everyday from 6am to 5pm.</p>
         <p><strong>Address:</strong> 15 Adr street, 5015, NY</p>
       </div>
