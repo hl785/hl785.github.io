@@ -3,7 +3,7 @@
 
 <head>
   <title>Henry Lockyer - Uni of Bath</title>
-  <link rel="icon" href="/images/favicon.svg" , sizes="any">
+  <link rel="icon" href="images/favicon.svg" , sizes="any">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -22,10 +22,6 @@
     }
 
     .circImg {
-      min-height: 20%;
-      min-width: 15%;
-      aspect-ratio: 1;
-      border-radius: 50%;
       margin-top: 2.5%;
       margin-bottom: 2.5%;
       margin-right: 2.5%;
@@ -43,15 +39,22 @@
     }
 
     .profilePic {
-      background-image: url("images/AdobeStock_164451366.svg");
+      max-height: 20%;
+      max-width: 15%;
+      aspect-ratio: 1;
+      vertical-align: middle;
+      border-radius: 50%;
     }
 
-    .sambaLogo {
-      background-image: url("images/favicon.svg");
-    }
+    /* .sambaLogo {
+    } */
 
     .blur {
       backdrop-filter: blur(6px);
+    }
+
+    .noMinH {
+      min-height: 0%;
     }
   </style>
 </head>
@@ -81,11 +84,23 @@
 
   <!-- Header with image -->
   <header class="img bgImg w3-display-container" id="home">
-    <a href="#" class="img circImg profilePic w3-display-bottomleft"></a>
+    <div class="w3-display-bottomleft">
+      <div class="w3-row" , style="height: 100%">
+        <div class="w3-col" , style="width:60%; height: 100%;">
+          <a href="#">
+            <img class="circImg profilePic" , src="images/profilePic.jpeg" , style="height: 100%">
+          </a>
+        </div>
+        <div class="w3-col" , style="width:40%; height: 100%;">
+          <a href="https://samba.ac.uk/">
+            <img class="circImg" src="images/SAMBaLogo.svg">
+          </a>
+        </div>
+      </div>
+    </div>
     <div class="w3-display-middle w3-center">
       <span class="w3-tag w3-wide" style="font-size:90px">Henry Lockyer</span>
     </div>
-    <a href="https://samba.ac.uk/" class="img circImg sambaLogo w3-display-bottomright"></a>
   </header>
 
   <!-- Add a background color and large text to the whole page -->
@@ -102,16 +117,85 @@
           <a href="https://people.bath.ac.uk/lmk54/">Dr Lisa Kreusser</a> and
           <a href="https://people.bath.ac.uk/em459/">Dr Eike Müller</a>.
         </p>
+
+        <p class="w3-card w3-center w3-padding-24 blur">
+          Tyger Tyger, burning bright,
+          In the forests of the night;
+          What immortal hand or eye,
+          Could frame thy fearful symmetry?
+
+          In what distant deeps or skies,
+          Burnt the fire of thine eyes?
+          On what wings dare he aspire?
+          What the hand, dare sieze the fire?
+
+          And what shoulder, & what art,
+          Could twist the sinews of thy heart?
+          And when thy heart began to beat,
+          What dread hand? & what dread feet?
+
+        </p>
       </div>
     </div>
 
     <!-- End page content -->
   </div>
 
+  <!-- 
+              <div id="hy8anprb" class="BaOVQ8 tz5f0K hy8anprb wixui-text" data-testid="richTextElement">
+                <p class="font_9" style="font-size:12px;"><span style="font-family:futura-lt-w01-light,sans-serif;">Dr
+                    Pranav Singh<br />
+                    6 West 1.24A<br />
+                    Department of Mathematical Sciences<br />
+                    University of Bath<br />
+                    Bath,&nbsp;BA2 7AY, United Kingdom</span></p>
+              </div>
+              <div id="comp-k3a4ar17" class="BaOVQ8 tz5f0K comp-k3a4ar17 wixui-text" data-testid="richTextElement">
+                <p class="font_9" style="text-align:right; font-size:12px;"><span style="text-decoration:underline;"><a
+                      href="mailto:ps2106@bath.ac.uk" target="_self"><span
+                        style="font-family:futura-lt-w01-light,sans-serif;">ps2106@bath.ac.uk</span></a></span></p>
+              </div>
+              <div id="hyio5hbu" class="BaOVQ8 tz5f0K hyio5hbu wixui-text" data-testid="richTextElement">
+                <p class="font_9" style="text-align:right; font-size:12px;"><span
+                    style="font-family:futura-lt-w01-light,sans-serif;">&copy; 2020 Pranav Singh</span></p>
+              </div> -->
+
+
   <!-- Footer -->
-  <footer class="w3-center w3-light-grey w3-padding-48 w3-large">
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank"
-        class="w3-hover-text-green">w3.css</a></p>
+  <!-- <footer class="w3-container w3-theme w3-center w3-margin-top">
+  <p>Contact Me</p>
+  <a href="mailto:jip30@bath.ac.uk" class="fa fa-envelope w3-hover-opacity w3-xlarge" style="text-decoration: none;" aria-hidden="true" ></a>
+  <a href="https://www.instagram.com/thejennypowerhour/" class="fa fa-instagram w3-hover-opacity w3-xlarge" style="text-decoration: none;" aria-hidden="true"></a>
+  <a href="https://twitter.com/jennypower13" class="fa fa-twitter w3-hover-opacity w3-xlarge" style="text-decoration: none;" aria-hidden="true"></a>
+  <a href="https://github.com/jip30" class="fa fa-github w3-hover-opacity w3-xlarge" style="text-decoration: none;" aria-hidden="true"></a>
+  <a href="https://www.linkedin.com/in/jennifer-power-816b07149/" class="fa fa-linkedin w3-hover-opacity w3-xlarge" style="text-decoration: none;" aria-hidden="true"></a>
+  <p>&copy; Jennifer Power 2022, Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer> -->
+
+
+  <!-- Footer -->
+  <footer class="img bgImg noMinH">
+    <div class="w3-row w3-cell-middle">
+      <div class="w3-col w3-cell-middle" , style="width:20%; height: 100%;">
+        <a href="https://samba.ac.uk/">
+          <img class="circImg w3-centered w3-cell-middle" src="images/SAMBaLogo.svg">
+        </a>
+      </div>
+      <div class="w3-col blur" , style="width:20%">
+        <!-- <a href="https://samba.ac.uk/" class="img circImg"></a> -->
+        <p style="font-size:12px;">Henry Edward Lockyer <br /> 4 West 2.15<br />
+          Department of Mathematical Sciences<br />
+          University of Bath<br />
+          Bath, BA2 7AY, United Kingdom</p>
+      </div>
+      <div class="w3-col" , style="width:20%">
+        <p class="w3-block" , style="width:90%"></p>
+      </div>
+      <div class="w3-col" , style="width:20%">
+        <p class="w3-block" , style="width:90%"></p>
+      </div>
+    </div>
+
   </footer>
 
 </body>
