@@ -11,17 +11,12 @@
     <style>
         :root {
             /* Colour scheme */
-            --header-colour: rgb(224, 224, 255);
-            --highlight-colour: #f2a365;
-            --cell1-colour: #30475e;
-            --cell2-colour: #222831;
-            --text-dark: #222831;
-            --text-light: #ececec;
-            --hover-colour: #f8b47f;
-            --link-colour: rgb(224, 224, 255);
-            --visited-link-colour: rgb(215, 180, 255);
+            --light-colour: rgb(88.999939%, 86.698914%, 82.398987%);
+            --dark-colour: rgb(34.899902%, 28.999329%, 25.898743%);
+            --highlight-colour: rgb(88.999939%, 86.698914%, 82.398987%);
+            --white-colour: rgb(100%, 100%, 100%);
+            --black-colour: rgb(0%, 0%, 0%);
         }
-
 
         html {
             height: 100%;
@@ -29,26 +24,20 @@
             scroll-behavior: smooth;
         }
 
-        /* To add a file: chmod og+r ~ss2767/public_html/photo.gif */
-
         body {
-            /* background: var(--text-dark); */
-            /* 3565ad nice colour */
             margin: 0;
-            /* font-size: 1.3em; */
         }
 
         :link {
             /* unvisited links */
             background: transparent;
-            color: var(--link-colour);
             text-decoration: none;
         }
 
         :visited {
             /* visited links */
             background: transparent;
-            color: var(--visited-link-colour);
+            text-decoration: none;
         }
 
         :link:hover,
@@ -56,39 +45,9 @@
         :link:active,
         :visited:active {
             background: transparent;
-            color: var(--highlight-colour);
+            color: var(--dark-colour);
             text-decoration: underline;
         }
-
-        dt {
-            /* Descriptive term in a descriptive list */
-            color: var(--highlight-colour);
-            font-weight: bold;
-        }
-
-
-        /* Social icons */
-        .fa {
-            padding: 5px;
-            font-size: 30px;
-            width: 40px;
-            text-align: center;
-            text-decoration: none;
-            margin: 3px 2px;
-        }
-
-        .fa:hover {
-            text-decoration: none;
-            color: #f2a365;
-        }
-
-        .fa-envelope,
-        .fa-github,
-        .fa-twitter,
-        .fa-linkedin {
-            color: #ececec;
-        }
-
 
         /* Navigation bar */
         .nav-container {
@@ -145,7 +104,7 @@
             height: 3px;
             margin: 5px auto;
             transition: all 0.3s ease-in-out;
-            background: var(--text-dark);
+            background: var(--white-colour);
         }
 
         .menu-toggle {
@@ -156,7 +115,7 @@
         .footer {
             height: 1.2em;
             text-align: center;
-            background: rgb(82, 82, 82);
+            background: var(--dark-colour);
             width: 100%;
             position: relative;
             bottom: 0px;
@@ -164,24 +123,20 @@
         }
 
         .row {
+            /* display: flex; */
+            /* display: grid; */
+            /* justify-content: space-between; */
             padding: 16px 20%;
-            color: var(--text-light);
+            color: var(--black-colour);
             text-align: justify;
             margin-top: .5em;
+            grid-auto-flow: column
         }
 
         h2 {
-            border-bottom: thin solid;
             font-size: 35px;
             width: 100%;
             text-align: center;
-        }
-
-        h1 {
-            font-size: 50px;
-            color: var(--text-light);
-            border-bottom: medium solid;
-            font-weight: bold;
         }
 
         .column {
@@ -203,7 +158,6 @@
 
 
         .bgImg {
-            min-height: 100%;
             background-image: url("images/AdobeStock_539658418.svg");
         }
 
@@ -306,34 +260,40 @@
 <body>
     <!-- Start of page content -->
     <!-- ############################################################### -->
-    <div class="row img bgImg" id="about">
-        <div class="column">
-            <h2 style="text-align:left; font-weight:bold; border-bottom:none;">Henry Lockyer</h2>
-            <p><a href="mailto:hl785@bath.ac.uk" class="clean-link">hl785@bath.ac.uk</a></p>
-        </div>
-
-        <div class="column" style="text-align:center">
+    <div class="row img bgImg" style="vertical-align: middle" id="about">
+        <div class="column" style="vertical-align: middle">
             <a href="#">
                 <img src="images/profilePic.jpeg" alt=""
                     style="padding:15px; height:220px; aspect-ratio: 1; border-radius: 50%">
             </a>
         </div>
 
-        <div class="column" style="text-align:right;">
-            <p>
-                Henry Edward Lockyer <br>
-                4 West 2.15<br>
-                Department of Mathematical Sciences<br>
-                University of Bath<br>
-                Bath, BA2 7AY, United Kingdom
-            </p>
+        <div class="column" style="text-align:center; vertical-align: middle">
+            <span>
+                <div class="blur" style="vertical-align: middle">
+                    <p>
+                        Henry Edward Lockyer <br>
+                        <a href="mailto:hl785@bath.ac.uk" class="clean-link">hl785@bath.ac.uk</a><br>
+                        4 West 2.15<br>
+                        Department of Mathematical Sciences<br>
+                        University of Bath<br>
+                        Bath, BA2 7AY, United Kingdom
+                    </p>
+                </div>
+            </span>
+        </div>
+
+        <div class="column" style="text-align:right; vertical-align: middle">
+            <a href="https://samba.ac.uk/">
+                <img src="images/SAMBaLogo.svg" alt="" style="padding:15px; height:150px">
+            </a>
         </div>
         <div style="clear: both;"></div>
     </div>
 
     <div class="nav-container w3-black">
         <div class="navbar">
-            <h1 id="navbar-logo">Postgraduate Research Student</h1>
+            <h1 id="navbar-logo">Henry Lockyer</h1>
             <div class="menu-toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
