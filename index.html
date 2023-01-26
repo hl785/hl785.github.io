@@ -2,198 +2,450 @@
 <html>
 
 <head>
-  <title>Henry Lockyer - Uni of Bath</title>
-  <link rel="icon" href="images/favicon.svg" , sizes="any">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <title>Henry Lockyer - Uni of Bath</title>
+    <link rel="icon" href="images/favicon.svg" , sizes="any">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <style>
+        :root {
+            /* Colour scheme */
+            --header-colour: rgb(224, 224, 255);
+            --highlight-colour: #f2a365;
+            --cell1-colour: #30475e;
+            --cell2-colour: #222831;
+            --text-dark: #222831;
+            --text-light: #ececec;
+            --hover-colour: #f8b47f;
+            --link-colour: rgb(224, 224, 255);
+            --visited-link-colour: rgb(215, 180, 255);
+        }
 
-  <style>
-    body,
-    html {
-      height: 100%;
-      font-family: "Inconsolata", sans-serif;
-    }
 
-    .img {
-      background-position: center;
-      background-size: cover;
-    }
+        html {
+            height: 100%;
+            font-family: "Inconsolata", sans-serif;
+            scroll-behavior: smooth;
+        }
 
-    .circImg {
-      margin-top: 2.5%;
-      margin-bottom: 2.5%;
-      margin-right: 2.5%;
-      margin-left: 2.5%;
-    }
+        /* To add a file: chmod og+r ~ss2767/public_html/photo.gif */
 
-    .bgImg {
-      min-height: 100%;
-      background-image: url("images/AdobeStock_539658418.svg");
-    }
+        body {
+            /* background: var(--text-dark); */
+            /* 3565ad nice colour */
+            margin: 0;
+            /* font-size: 1.3em; */
+        }
 
-    .fixBgImg {
-      background-attachment: fixed;
-      background-image: url("images/AdobeStock_443888514.svg");
-    }
+        :link {
+            /* unvisited links */
+            background: transparent;
+            color: var(--link-colour);
+            text-decoration: none;
+        }
 
-    .profilePic {
-      max-height: 20%;
-      max-width: 15%;
-      aspect-ratio: 1;
-      vertical-align: middle;
-      border-radius: 50%;
-    }
+        :visited {
+            /* visited links */
+            background: transparent;
+            color: var(--visited-link-colour);
+        }
 
-    /* .sambaLogo {
-    } */
+        :link:hover,
+        :visited:hover,
+        :link:active,
+        :visited:active {
+            background: transparent;
+            color: var(--highlight-colour);
+            text-decoration: underline;
+        }
 
-    .blur {
-      backdrop-filter: blur(8px);
-    }
+        dt {
+            /* Descriptive term in a descriptive list */
+            color: var(--highlight-colour);
+            font-weight: bold;
+        }
 
-    .noMinH {
-      min-height: 0%;
-    }
-  </style>
+
+        /* Social icons */
+        .fa {
+            padding: 5px;
+            font-size: 30px;
+            width: 40px;
+            text-align: center;
+            text-decoration: none;
+            margin: 3px 2px;
+        }
+
+        .fa:hover {
+            text-decoration: none;
+            color: #f2a365;
+        }
+
+        .fa-envelope,
+        .fa-github,
+        .fa-twitter,
+        .fa-linkedin {
+            color: #ececec;
+        }
+
+
+        /* Navigation bar */
+        .nav-container {
+            width: 100%;
+            position: sticky;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        .navbar {
+            display: grid;
+            grid-template-columns: 0.2fr auto 1fr;
+            margin: 0 auto;
+            padding: 0;
+            height: 80px;
+            width: 90%;
+            align-items: center;
+            box-sizing: border-box;
+
+        }
+
+        #navbar-logo {
+            justify-self: start;
+            font-size: 20px;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu {
+            display: grid;
+            grid-template-columns: repeat(6, auto);
+            list-style: none;
+            text-align: center;
+            width: 90%;
+            justify-self: end;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .nav-links {
+            font-weight: bold;
+            padding: 15px;
+        }
+
+        /* Mobile menu toggle button*/
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: all 0.3s ease-in-out;
+            background: var(--text-dark);
+        }
+
+        .menu-toggle {
+            padding: 5px 5px;
+        }
+
+        /* Footer */
+        .footer {
+            height: 1.2em;
+            text-align: center;
+            background: rgb(82, 82, 82);
+            width: 100%;
+            position: relative;
+            bottom: 0px;
+            font-size: 80%;
+        }
+
+        .row {
+            padding: 16px 20%;
+            color: var(--text-light);
+            text-align: justify;
+            margin-top: .5em;
+        }
+
+        h2 {
+            border-bottom: thin solid;
+            font-size: 35px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 50px;
+            color: var(--text-light);
+            border-bottom: medium solid;
+            font-weight: bold;
+        }
+
+        .column {
+            float: left;
+            width: 33.33333%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .img {
+            background-position: center;
+            background-size: cover;
+        }
+
+
+        .bgImg {
+            min-height: 100%;
+            background-image: url("images/AdobeStock_539658418.svg");
+        }
+
+        .fixBgImg {
+            background-attachment: fixed;
+            background-image: url("images/AdobeStock_443888514.svg");
+        }
+
+        .blur {
+            backdrop-filter: blur(8px);
+        }
+
+        /* Responsive layout - when the screen is less than 1000px wide,  */
+        @media screen and (max-width: 1000px) {
+
+            /* Collapsable nav bar */
+            .nav-menu {
+                display: grid;
+                grid-template-columns: auto;
+                margin: 0;
+                width: 100%;
+                position: absolute;
+                top: 80px;
+                left: -100%;
+                opacity: 0;
+                transition: all 0.5s ease;
+            }
+
+            .nav-menu.active {
+                background: var(--highlight-colour);
+                left: 0;
+                opacity: 1;
+                transition: all 0.5s ease;
+            }
+
+            .nav-links {
+                text-align: center;
+                line-height: 60px;
+                width: 100%;
+                display: table;
+            }
+
+            .nav-links:hover {
+                transition: all 0.4s ease-out;
+            }
+
+            .nav-bar {
+                width: 100%;
+            }
+
+            #mobile-menu {
+                position: absolute;
+                top: 20%;
+                right: 5%;
+                transform: translate(5%, 20%);
+            }
+
+            .menu-toggle .bar {
+                display: block;
+                cursor: pointer;
+            }
+
+            .menu-toggle:hover {
+                cursor: pointer;
+            }
+
+            /* Change menu bar to cross when listing anchors */
+            #mobile-menu.is-active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            #mobile-menu.is-active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            #mobile-menu.is-active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+
+            /* make the columns stack on top of each other instead of next to each other */
+            .column {
+                width: 100%;
+                display: block;
+                margin-bottom: 20px;
+            }
+
+            .row {
+                padding: 8px 5%
+            }
+        }
+    </style>
 </head>
 
+
+
+<!-- Start of the document body -->
+<!-- ############################################################### -->
+
 <body>
-  <!-- Elements on page -->
-  <!-- Links (sit on top) -->
-  <div class="w3-top">
-    <div class="w3-row w3-padding w3-black">
-      <div class="w3-col" , style="width:calc(100% / 6)">
-        <a href="#profile" class="w3-button w3-block w3-black" , style="width:90%">Profile</a>
-      </div>
-      <div class="w3-col" , style="width:calc(100% / 6)">
-        <a href="" class="w3-button w3-block w3-black" , style="width:90%">Projects</a>
-      </div>
-      <div class="w3-col" , style="width:calc(100% / 6)">
-        <a href="" class="w3-button w3-block w3-black" , style="width:90%">Activities</a>
-      </div>
-      <div class="w3-col" , style="width:calc(100% / 3)">
-        <p class="w3-block w3-black" , style="width:90%"></p>
-      </div>
-      <div class="w3-col" , style="width:calc(100% / 6)">
-        <a href="" class="w3-button w3-block w3-black" , style="width:90%">SAMBa conference 2023</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Header with image -->
-  <header class="img bgImg w3-display-container" id="home">
-    <div class="w3-display-bottomleft">
-      <div class="w3-row" , style="height: 100%">
-        <div class="w3-col" , style="width:60%; height: 100%;">
-          <a href="#">
-            <img class="circImg profilePic" , src="images/profilePic.jpeg" , style="height: 100%">
-          </a>
+    <!-- Start of page content -->
+    <!-- ############################################################### -->
+    <div class="row img bgImg" id="about">
+        <div class="column">
+            <h2 style="text-align:left; font-weight:bold; border-bottom:none;">Henry Lockyer</h2>
+            <p><a href="mailto:hl785@bath.ac.uk" class="clean-link">hl785@bath.ac.uk</a></p>
         </div>
-        <div class="w3-col" , style="width:40%; height: 100%;">
-          <a href="https://samba.ac.uk/">
-            <img class="circImg" src="images/SAMBaLogo.svg">
-          </a>
+
+        <div class="column" style="text-align:center">
+            <a href="#">
+                <img src="images/profilePic.jpeg" alt=""
+                    style="padding:15px; height:220px; aspect-ratio: 1; border-radius: 50%">
+            </a>
         </div>
-      </div>
-    </div>
-    <div class="w3-display-middle w3-center">
-      <span class="w3-tag w3-wide" style="font-size:90px">Henry Lockyer</span>
-    </div>
-  </header>
 
-  <!-- Add a background color and large text to the whole page -->
-  <div class="w3-large img fixBgImg">
-
-    <!-- About Container -->
-    <div class="w3-container" id="profile">
-      <div class="w3-content" style="max-width:700px">
-        <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">BRIEF BIOGRAPHY</span></h5>
-        <p class="w3-card w3-center w3-padding-24 blur">
-          I am a mathematics PhD student studying at the <a href="https://samba.ac.uk/">SAMBa CDT</a> of the
-          <a href="https://www.bath.ac.uk/">University of Bath</a>. My supervisors are
-          <a href="https://www.pranavsingh.co.uk/"> Dr Pranav Singh</a>,
-          <a href="https://people.bath.ac.uk/lmk54/">Dr Lisa Kreusser</a> and
-          <a href="https://people.bath.ac.uk/em459/">Dr Eike Müller</a> who are supervising my PhD 
-          "Data driven splitting algorithms" which focuses on finding new splitting schemes that are 
-          optimal for larger time-steps and specific problems, e.g. Schrodinger's equation.
-        </p>
-
-        <p class="w3-card w3-center w3-padding-24 blur">
-          My undergraduate degree is a first-class honours Master of Mathematics from the 
-          <a href="https://www.bath.ac.uk/">University of Bath</a> which I  graduated from 
-          in the summer of 2021. 
-        </p>
-
-        <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TITLE</span></h5>
-
-        <p class="w3-card w3-center w3-padding-24 blur">
-          Text
-        </p>
-      </div>
+        <div class="column" style="text-align:right;">
+            <p>
+                Henry Edward Lockyer <br>
+                4 West 2.15<br>
+                Department of Mathematical Sciences<br>
+                University of Bath<br>
+                Bath, BA2 7AY, United Kingdom
+            </p>
+        </div>
+        <div style="clear: both;"></div>
     </div>
 
-    <!-- End page content -->
-  </div>
-
-  <!-- 
-              <div id="hy8anprb" class="BaOVQ8 tz5f0K hy8anprb wixui-text" data-testid="richTextElement">
-                <p class="font_9" style="font-size:12px;"><span style="font-family:futura-lt-w01-light,sans-serif;">Dr
-                    Pranav Singh<br />
-                    6 West 1.24A<br />
-                    Department of Mathematical Sciences<br />
-                    University of Bath<br />
-                    Bath,&nbsp;BA2 7AY, United Kingdom</span></p>
-              </div>
-              <div id="comp-k3a4ar17" class="BaOVQ8 tz5f0K comp-k3a4ar17 wixui-text" data-testid="richTextElement">
-                <p class="font_9" style="text-align:right; font-size:12px;"><span style="text-decoration:underline;"><a
-                      href="mailto:ps2106@bath.ac.uk" target="_self"><span
-                        style="font-family:futura-lt-w01-light,sans-serif;">ps2106@bath.ac.uk</span></a></span></p>
-              </div>
-              <div id="hyio5hbu" class="BaOVQ8 tz5f0K hyio5hbu wixui-text" data-testid="richTextElement">
-                <p class="font_9" style="text-align:right; font-size:12px;"><span
-                    style="font-family:futura-lt-w01-light,sans-serif;">&copy; 2020 Pranav Singh</span></p>
-              </div> -->
-
-
-  <!-- Footer -->
-  <!-- <footer class="w3-container w3-theme w3-center w3-margin-top">
-  <p>Contact Me</p>
-  <a href="mailto:jip30@bath.ac.uk" class="fa fa-envelope w3-hover-opacity w3-xlarge" style="text-decoration: none;" aria-hidden="true" ></a>
-  <a href="https://www.instagram.com/thejennypowerhour/" class="fa fa-instagram w3-hover-opacity w3-xlarge" style="text-decoration: none;" aria-hidden="true"></a>
-  <a href="https://twitter.com/jennypower13" class="fa fa-twitter w3-hover-opacity w3-xlarge" style="text-decoration: none;" aria-hidden="true"></a>
-  <a href="https://github.com/jip30" class="fa fa-github w3-hover-opacity w3-xlarge" style="text-decoration: none;" aria-hidden="true"></a>
-  <a href="https://www.linkedin.com/in/jennifer-power-816b07149/" class="fa fa-linkedin w3-hover-opacity w3-xlarge" style="text-decoration: none;" aria-hidden="true"></a>
-  <p>&copy; Jennifer Power 2022, Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-</footer> -->
-
-
-  <!-- Footer -->
-  <footer class="img bgImg noMinH">
-    <div class="w3-row w3-cell-middle" , style="height: 100%">
-      <div class="w3-col w3-cell-middle" , style="width:20%; height: 100%;">
-        <a href="https://samba.ac.uk/" class="w3-cell-middle">
-          <img class="circImg w3-centered w3-cell-middle" src="images/SAMBaLogo.svg">
-        </a>
-      </div>
-      <div class="w3-col blur" , style="width:20%">
-        <!-- <a href="https://samba.ac.uk/" class="img circImg"></a> -->
-        <p style="font-size:12px;">Henry Edward Lockyer <br /> 4 West 2.15<br />
-          Department of Mathematical Sciences<br />
-          University of Bath<br />
-          Bath, BA2 7AY, United Kingdom</p>
-      </div>
-      <div class="w3-col" , style="width:20%">
-        <p class="w3-block" , style="width:90%"></p>
-      </div>
-      <div class="w3-col" , style="width:20%">
-        <p class="w3-block" , style="width:90%"></p>
-      </div>
+    <div class="nav-container w3-black">
+        <div class="navbar">
+            <h1 id="navbar-logo">Postgraduate Research Student</h1>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#profile" class="nav-links w3-button w3-black">PROFILE</a></li>
+                <li><a href="#research" class="nav-links w3-button w3-black">RESEARCH</a></li>
+                <li><a href="#publications" class="nav-links w3-button w3-black">PUBLICATIONS</a></li>
+                <li><a href="#tutoring" class="nav-links w3-button w3-black">TUTORING</a></li>
+                <li><a href="#personal" class="nav-links w3-button w3-black">CONTACT</a></li>
+                <li><a href="SAMBa-Conf-2022.html" class="nav-links w3-button w3-black">SAMBa CONF. 2022</a></li>
+            </ul>
+        </div>
     </div>
 
-  </footer>
+    <div class="w3-large img fixBgImg">
+        <div class="w3-content" style="max-width:700px">
+            <!-- ############################################################### -->
+            <div class="w3-container" id="profile">
+                <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">BRIEF BIOGRAPHY</span></h5>
 
-</body>
+                <p class="w3-card w3-center w3-padding-24 blur">
+                    I am a mathematics PhD student studying at the <a href="https://samba.ac.uk/">SAMBa CDT</a> of the
+                    <a href="https://www.bath.ac.uk/">University of Bath</a>. My supervisors are
+                    <a href="https://www.pranavsingh.co.uk/"> Dr Pranav Singh</a>,
+                    <a href="https://people.bath.ac.uk/lmk54/">Dr Lisa Kreusser</a> and
+                    <a href="https://people.bath.ac.uk/em459/">Dr Eike Müller</a> who are supervising my PhD
+                    "Data driven splitting algorithms" which focuses on finding new splitting schemes that are
+                    optimal for larger time-steps and specific problems, e.g. Schrodinger's equation.
+                </p>
+
+                <p class="w3-card w3-center w3-padding-24 blur">
+                    My undergraduate degree is a first-class honours Master of Mathematics from the
+                    <a href="https://www.bath.ac.uk/">University of Bath</a> which I graduated from
+                    in the summer of 2021.
+                </p>
+            </div>
+
+            <!-- ############################################################### -->
+            <div class="row" id="research">
+                <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TITLE</span></h5>
+
+                <p class="w3-card w3-center w3-padding-24 blur">
+                    Text
+                </p>
+            </div>
+
+            <!-- ############################################################### -->
+            <div class="row" id="publications">
+                <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TITLE</span></h5>
+
+                <p class="w3-card w3-center w3-padding-24 blur">
+                    Text
+                </p>
+            </div>
+
+            <!-- ############################################################### -->
+            <div class="row" id="news">
+                <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TITLE</span></h5>
+
+                <p class="w3-card w3-center w3-padding-24 blur">
+                    Text
+                </p>
+            </div>
+
+            <!-- ############################################################### -->
+            <div class="row" id="tutoring">
+                <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TITLE</span></h5>
+
+                <p class="w3-card w3-center w3-padding-24 blur">
+                    Text
+                </p>
+            </div>
+
+            <!-- ############################################################### -->
+            <div class="row" id="personal">
+                <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TITLE</span></h5>
+
+                <p class="w3-card w3-center w3-padding-24 blur">
+                    Text
+                </p>
+            </div>
+
+            <!-- ############################################################### -->
+            <div class="row" style="text-align: center;" id="social">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            Last updated January 2023
+        </div>
+    </div>
+    <!-- End of page content-->
+
+    <!-- Collapsable navigation menu -->
+    <script>
+        const menu = document.querySelector('#mobile-menu');
+        const menuLinks = document.querySelector('.nav-menu');
+
+        menu.addEventListener('click', function () {
+            menu.classList.toggle('is-active');
+            menuLinks.classList.toggle('active');
+        })
+        menuLinks.addEventListener('click', function () {
+            menu.classList.toggle('is-active');
+            menuLinks.classList.toggle('active');
+        })
+
+
+    </script>
 
 </html>
