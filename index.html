@@ -123,14 +123,19 @@
         }
 
         .row {
-            /* display: flex; */
-            /* display: grid; */
-            /* justify-content: space-between; */
+            /* display: grid;
+            grid-auto-flow: column; */
+            /* display: flex;
+            justify-content: space-between; */
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-evenly;
+            align-items: center;
             padding: 16px 20%;
             color: var(--black-colour);
             text-align: justify;
             margin-top: .5em;
-            grid-auto-flow: column
         }
 
         h2 {
@@ -145,11 +150,11 @@
         }
 
         /* Clear floats after the columns */
-        .row:after {
+        /* .row:after {
             content: "";
             display: table;
             clear: both;
-        }
+        } */
 
         .img {
             background-position: center;
@@ -167,6 +172,7 @@
         }
 
         .blur {
+            /* background-color:powderblue; */
             backdrop-filter: blur(8px);
         }
 
@@ -246,6 +252,7 @@
             }
 
             .row {
+                flex-wrap: wrap;
                 padding: 8px 5%
             }
         }
@@ -268,12 +275,12 @@
             </a>
         </div>
 
-        <div class="column" style="text-align:center; vertical-align: middle">
+        <div class="column" style="text-align:center; vertical-align: middle;">
             <span>
-                <div class="blur" style="vertical-align: middle">
+                <div class="blur" style="vertical-align: middle; display:inline-block" >
                     <p>
                         Henry Edward Lockyer <br>
-                        <a href="mailto:hl785@bath.ac.uk" class="clean-link">hl785@bath.ac.uk</a><br>
+                        <a href="mailto:hl785@bath.ac.uk">hl785@bath.ac.uk</a><br>
                         4 West 2.15<br>
                         Department of Mathematical Sciences<br>
                         University of Bath<br>
@@ -334,7 +341,7 @@
             </div>
 
             <!-- ############################################################### -->
-            <div class="row" id="research">
+            <div class="w3-container" id="research">
                 <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TITLE</span></h5>
 
                 <p class="w3-card w3-center w3-padding-24 blur">
@@ -343,7 +350,7 @@
             </div>
 
             <!-- ############################################################### -->
-            <div class="row" id="publications">
+            <div class="w3-container" id="publications">
                 <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TITLE</span></h5>
 
                 <p class="w3-card w3-center w3-padding-24 blur">
@@ -352,7 +359,7 @@
             </div>
 
             <!-- ############################################################### -->
-            <div class="row" id="news">
+            <div class="w3-container" id="news">
                 <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TITLE</span></h5>
 
                 <p class="w3-card w3-center w3-padding-24 blur">
@@ -361,7 +368,7 @@
             </div>
 
             <!-- ############################################################### -->
-            <div class="row" id="tutoring">
+            <div class="w3-container" id="tutoring">
                 <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TITLE</span></h5>
 
                 <p class="w3-card w3-center w3-padding-24 blur">
@@ -370,7 +377,7 @@
             </div>
 
             <!-- ############################################################### -->
-            <div class="row" id="personal">
+            <div class="w3-container" id="personal">
                 <h5 class="w3-center w3-padding-64"><span class="w3-tag w3-wide">TITLE</span></h5>
 
                 <p class="w3-card w3-center w3-padding-24 blur">
@@ -379,7 +386,7 @@
             </div>
 
             <!-- ############################################################### -->
-            <div class="row" style="text-align: center;" id="social">
+            <div class="w3-container" style="text-align: center;" id="social">
             </div>
         </div>
     </div>
