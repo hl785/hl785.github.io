@@ -123,16 +123,11 @@
         }
 
         .row {
-            /* display: grid;
-            grid-auto-flow: column; */
-            /* display: flex;
-            justify-content: space-between; */
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            justify-content: space-evenly;
+            justify-content: space-between;
             align-items: center;
-            padding: 16px 20%;
             color: var(--black-colour);
             text-align: justify;
             margin-top: .5em;
@@ -148,13 +143,6 @@
             float: left;
             width: 33.33333%;
         }
-
-        /* Clear floats after the columns */
-        /* .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        } */
 
         .img {
             background-position: center;
@@ -257,7 +245,7 @@
             }
 
             .blur {
-                background-color:var(--light-colour);
+                background-color: var(--light-colour);
                 /* backdrop-filter: blur(8px); */
             }
         }
@@ -280,7 +268,7 @@
             </a>
         </div>
 
-        <div class="column" style="text-align:center; vertical-align: middle;">
+        <div class="column" style="text-align:center; vertical-align: middle">
             <span>
                 <div class="blur" style="vertical-align: middle; display:inline-block">
                     <p>
@@ -297,7 +285,7 @@
 
         <div class="column" style="text-align:right; vertical-align: middle">
             <a href="https://samba.ac.uk/">
-                <img src="images/SAMBaLogo.svg" alt="" style="padding:15px; height:150px">
+                <img src="images/SAMBaLogo.svg" alt="" style="padding:15px; height:150px; max-width: 100%;">
             </a>
         </div>
         <div style="clear: both;"></div>
@@ -395,10 +383,41 @@
             </div>
         </div>
     </div>
-
+    
     <div class="footer">
-        <div class="container">
-            Last updated January 2023
+        <div class="row img bgImg" style="vertical-align: middle" id="about">
+            <div class="column" style="text-align:left; vertical-align: middle">
+                <a href="https://samba.ac.uk/">
+                    <img src="images/SAMBaLogo.svg" alt="" style="padding:15px; height:150px; max-width: 100%;">
+                </a>
+            </div>
+
+            <div class="column" style="text-align:left; vertical-align: middle;">
+                <span>
+                    <div class="blur" style="vertical-align: middle; display:inline-block">
+                        <p>
+                            Henry Edward Lockyer <br>
+                            <!-- <a href="mailto:hl785@bath.ac.uk">hl785@bath.ac.uk</a><br> -->
+                            4 West 2.15<br>
+                            Department of Mathematical Sciences<br>
+                            University of Bath<br>
+                            Bath, BA2 7AY, United Kingdom
+                        </p>
+                    </div>
+                </span>
+            </div>
+
+            <div class="column" style="text-align:right; vertical-align: middle;">
+                <span>
+                    <div class="blur" style="vertical-align: middle; display:inline-block">
+                        <p>
+                            <a href="mailto:hl785@bath.ac.uk">hl785@bath.ac.uk</a><br>
+                            Last updated January 2023<br>
+                           </p>
+                    </div>
+                </span>
+            </div>
+            <div style="clear: both;"></div>
         </div>
     </div>
     <!-- End of page content-->
