@@ -158,7 +158,7 @@
 
         .img {
             background-position: center;
-            background-size: cover;
+            background-size: contain;
         }
 
 
@@ -255,6 +255,11 @@
                 flex-wrap: wrap;
                 padding: 8px 5%
             }
+
+            .blur {
+                background-color:var(--light-colour);
+                /* backdrop-filter: blur(8px); */
+            }
         }
     </style>
 </head>
@@ -277,7 +282,7 @@
 
         <div class="column" style="text-align:center; vertical-align: middle;">
             <span>
-                <div class="blur" style="vertical-align: middle; display:inline-block" >
+                <div class="blur" style="vertical-align: middle; display:inline-block">
                     <p>
                         Henry Edward Lockyer <br>
                         <a href="mailto:hl785@bath.ac.uk">hl785@bath.ac.uk</a><br>
