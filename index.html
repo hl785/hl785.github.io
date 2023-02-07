@@ -160,8 +160,8 @@
         }
 
         .blur {
-            /* background-color:powderblue; */
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
 
         /* Responsive layout - when the screen is less than 1000px wide,  */
@@ -242,11 +242,6 @@
             .row {
                 flex-wrap: wrap;
                 padding: 8px 5%
-            }
-
-            .blur {
-                background-color: var(--light-colour);
-                /* backdrop-filter: blur(8px); */
             }
         }
     </style>
