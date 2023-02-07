@@ -130,7 +130,6 @@
             align-items: center;
             color: var(--black-colour);
             text-align: justify;
-            margin-top: .5em;
         }
 
         h2 {
@@ -146,16 +145,17 @@
 
         .img {
             background-position: center;
-            background-size: contain;
         }
 
 
         .bgImg {
+            background-size: cover;
             background-image: url("images/AdobeStock_539658418.svg");
         }
 
         .fixBgImg {
             background-attachment: fixed;
+            background-size: contain;
             background-image: url("images/AdobeStock_443888514.svg");
         }
 
@@ -260,32 +260,17 @@
 <body>
     <!-- Start of page content -->
     <!-- ############################################################### -->
-    <div class="row img bgImg" style="vertical-align: middle" id="about">
-        <div class="column" style="vertical-align: middle">
+    <div class="row img bgImg" style="vertical-align: middle">
+        <div class="column" style="text-align:center; vertical-align: middle">
             <a href="#">
                 <img src="images/profilePic.jpeg" alt=""
                     style="padding:15px; height:220px; aspect-ratio: 1; border-radius: 50%">
             </a>
         </div>
 
-        <div class="column" style="text-align:center; vertical-align: middle">
-            <span>
-                <div class="blur" style="vertical-align: middle; display:inline-block">
-                    <p>
-                        Henry Edward Lockyer <br>
-                        <a href="mailto:hl785@bath.ac.uk">hl785@bath.ac.uk</a><br>
-                        4 West 2.15<br>
-                        Department of Mathematical Sciences<br>
-                        University of Bath<br>
-                        Bath, BA2 7AY, United Kingdom
-                    </p>
-                </div>
-            </span>
-        </div>
-
-        <div class="column" style="text-align:right; vertical-align: middle">
+        <div class="column" style="text-align: center; vertical-align: middle">
             <a href="https://samba.ac.uk/">
-                <img src="images/SAMBaLogo.svg" alt="" style="padding:15px; height:150px; max-width: 100%;">
+                <img src="images/SAMBaLogo.svg" alt="" style="text-align: right; margin-left: auto; margin-right: auto; padding:15px; height:150px; max-width: 100%;">
             </a>
         </div>
         <div style="clear: both;"></div>
@@ -293,7 +278,9 @@
 
     <div class="nav-container w3-black">
         <div class="navbar">
-            <h1 id="navbar-logo">Henry Lockyer</h1>
+            <h1 id="navbar-logo">
+                <a href="#" class="w3-button w3-black">Henry Lockyer</a>
+            </h1>
             <div class="menu-toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -305,7 +292,7 @@
                 <li><a href="#publications" class="nav-links w3-button w3-black">PUBLICATIONS</a></li>
                 <li><a href="#tutoring" class="nav-links w3-button w3-black">TUTORING</a></li>
                 <li><a href="#personal" class="nav-links w3-button w3-black">CONTACT</a></li>
-                <li><a href="SAMBa-Conf-2022.html" class="nav-links w3-button w3-black">SAMBa CONF. 2022</a></li>
+                <li><a href="SAMBa-Conf-2023.html" class="nav-links w3-button w3-black">SAMBa CONF. 2023</a></li>
             </ul>
         </div>
     </div>
@@ -329,7 +316,19 @@
                 <p class="w3-card w3-center w3-padding-24 blur">
                     My undergraduate degree is a first-class honours Master of Mathematics from the
                     <a href="https://www.bath.ac.uk/">University of Bath</a> which I graduated from
-                    in the summer of 2021.
+                    in the summer of 2021. My undergraduate Masters thesis was on the natural embedding of 
+                    M.C. Escher's lithograph Print Gallery on a logarithmic Riemann surface and how to 
+                    generalize this effect to other images and situations. As part of the first year of 
+                    my PhD I have since attained a Master of research from the
+                    <a href="https://www.bath.ac.uk/">University of Bath</a> in the year 2022.
+                </p>
+
+                <p class="w3-card w3-center w3-padding-24 blur">
+                    Outside of mathematics I worked for a year at Hawkeye as a software programmer in the 
+                    computer vision team. This was where I developed my interest in coding that is used 
+                    in my PhD to this day. I am also passionate skier and indeed am a IASI level 2 ski instructor,
+                    this along with my interest in long walks (up to 80km in a day) are a result of living in 
+                    Switzerland for 12 years before returning to the UK. 
                 </p>
             </div>
 
@@ -385,16 +384,16 @@
     </div>
     
     <div class="footer">
-        <div class="row img bgImg" style="vertical-align: middle" id="about">
-            <div class="column" style="text-align:left; vertical-align: middle">
+        <div class="row img bgImg" style="vertical-align: middle">
+            <div class="column" style="vertical-align: middle; margin-left: auto; margin-right: auto; text-align: center;">
                 <a href="https://samba.ac.uk/">
                     <img src="images/SAMBaLogo.svg" alt="" style="padding:15px; height:150px; max-width: 100%;">
                 </a>
             </div>
 
-            <div class="column" style="text-align:left; vertical-align: middle;">
+            <div class="column" style="vertical-align: middle; margin-left: auto; margin-right: auto; text-align: center;">
                 <span>
-                    <div class="blur" style="vertical-align: middle; display:inline-block">
+                    <div class="blur" style="vertical-align: middle; display:inline-block;">
                         <p>
                             Henry Edward Lockyer <br>
                             <!-- <a href="mailto:hl785@bath.ac.uk">hl785@bath.ac.uk</a><br> -->
@@ -407,12 +406,12 @@
                 </span>
             </div>
 
-            <div class="column" style="text-align:right; vertical-align: middle;">
+            <div class="column" style="padding: 15px; vertical-align: middle; margin-left: auto; margin-right: auto; text-align: center;">
                 <span>
                     <div class="blur" style="vertical-align: middle; display:inline-block">
                         <p>
                             <a href="mailto:hl785@bath.ac.uk">hl785@bath.ac.uk</a><br>
-                            Last updated January 2023<br>
+                            Last updated February 2023<br>
                            </p>
                     </div>
                 </span>
