@@ -13,7 +13,6 @@
             /* Colour scheme */
             --light-colour: rgb(88.999939%, 86.698914%, 82.398987%);
             --dark-colour: rgb(34.899902%, 28.999329%, 25.898743%);
-            --highlight-colour: rgb(88.999939%, 86.698914%, 82.398987%);
             --white-colour: rgb(100%, 100%, 100%);
             --black-colour: rgb(0%, 0%, 0%);
         }
@@ -115,7 +114,6 @@
         .footer {
             height: 1.2em;
             text-align: center;
-            background: var(--dark-colour);
             width: 100%;
             position: relative;
             bottom: 0px;
@@ -130,12 +128,6 @@
             align-items: center;
             color: var(--black-colour);
             text-align: justify;
-        }
-
-        h2 {
-            font-size: 35px;
-            width: 100%;
-            text-align: center;
         }
 
         .column {
@@ -162,6 +154,24 @@
         .blur {
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
+            color: var(--black-colour)
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .blur {
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                color: var(--white-colour)
+            }
+
+            :link:hover,
+            :visited:hover,
+            :link:active,
+            :visited:active {
+                background: transparent;
+                color: var(--light-colour);
+                text-decoration: underline;
+            }
         }
 
         /* Responsive layout - when the screen is less than 1000px wide,  */
@@ -181,7 +191,6 @@
             }
 
             .nav-menu.active {
-                background: var(--highlight-colour);
                 left: 0;
                 opacity: 1;
                 transition: all 0.5s ease;
@@ -265,7 +274,8 @@
 
         <div class="column" style="text-align: center; vertical-align: middle">
             <a href="https://samba.ac.uk/">
-                <img src="images/SAMBaLogo.svg" alt="" style="text-align: right; margin-left: auto; margin-right: auto; padding:15px; height:150px; max-width: 100%;">
+                <img src="images/SAMBaLogo.svg" alt=""
+                    style="text-align: right; margin-left: auto; margin-right: auto; padding:15px; height:150px; max-width: 100%;">
             </a>
         </div>
         <div style="clear: both;"></div>
@@ -311,19 +321,19 @@
                 <p class="w3-card w3-center w3-padding-24 blur">
                     My undergraduate degree is a first-class honours Master of Mathematics from the
                     <a href="https://www.bath.ac.uk/">University of Bath</a> which I graduated from
-                    in the summer of 2021. My undergraduate Masters thesis was on the natural embedding of 
-                    M.C. Escher's lithograph Print Gallery on a logarithmic Riemann surface and how to 
-                    generalize this effect to other images and situations. As part of the first year of 
+                    in the summer of 2021. My undergraduate Masters thesis was on the natural embedding of
+                    M.C. Escher's lithograph Print Gallery on a logarithmic Riemann surface and how to
+                    generalize this effect to other images and situations. As part of the first year of
                     my PhD I have since attained a Master of research from the
                     <a href="https://www.bath.ac.uk/">University of Bath</a> in the year 2022.
                 </p>
 
                 <p class="w3-card w3-center w3-padding-24 blur">
-                    Outside of mathematics I worked for a year at Hawkeye as a software programmer in the 
-                    computer vision team. This was where I developed my interest in coding that is used 
+                    Outside of mathematics I worked for a year at Hawkeye as a software programmer in the
+                    computer vision team. This was where I developed my interest in coding that is used
                     in my PhD to this day. I am also passionate skier and indeed am a IASI level 2 ski instructor,
-                    this along with my interest in long walks (up to 80km in a day) are a result of living in 
-                    Switzerland for 12 years before returning to the UK. 
+                    this along with my interest in long walks (up to 80km in a day) are a result of living in
+                    Switzerland for 12 years before returning to the UK.
                 </p>
             </div>
 
@@ -371,47 +381,42 @@
                     Text
                 </p>
             </div>
-
-            <!-- ############################################################### -->
-            <div class="w3-container" style="text-align: center;" id="social">
-            </div>
         </div>
     </div>
-    
+
     <div class="footer">
         <div class="row img bgImg" style="vertical-align: middle">
-            <div class="column" style="vertical-align: middle; margin-left: auto; margin-right: auto; text-align: center;">
+            <div class="column"
+                style="vertical-align: middle; margin-left: auto; margin-right: auto; text-align: center;">
                 <a href="https://samba.ac.uk/">
                     <img src="images/SAMBaLogo.svg" alt="" style="padding:15px; height:150px; max-width: 100%;">
                 </a>
             </div>
 
-            <div class="column" style="vertical-align: middle; margin-left: auto; margin-right: auto; text-align: center;">
+            <div class="column"
+                style="vertical-align: middle; margin-left: auto; margin-right: auto; text-align: center;">
                 <span>
                     <div class="blur" style="vertical-align: middle; display:inline-block;">
                         <p>
                             Henry Edward Lockyer <br>
-                            <!-- <a href="mailto:hl785@bath.ac.uk">hl785@bath.ac.uk</a><br> -->
                             4 West 2.15<br>
                             Department of Mathematical Sciences<br>
                             University of Bath<br>
-                            Bath, BA2 7AY, United Kingdom
+                            Bath, BA2 7AY, United Kingdom<br>
                         </p>
                     </div>
                 </span>
             </div>
 
-            <script language="JavaScript">
-            </script>
-
-            <div class="column" style="padding: 15px; vertical-align: middle; margin-left: auto; margin-right: auto; text-align: center;">
+            <div class="column"
+                style="padding: 15px; vertical-align: middle; margin-left: auto; margin-right: auto; text-align: center;">
                 <span>
                     <div class="blur" style="vertical-align: middle; display:inline-block">
                         <p>
                             <a href="mailto:hl785@bath.ac.uk">hl785@bath.ac.uk</a><br>
                             Last updated: <span id='dateStr'></span><br>
                             &copy; <span id='yearStr'></span> Henry Lockyer<br>
-                           </p>
+                        </p>
                     </div>
                 </span>
             </div>
@@ -435,7 +440,7 @@
         })
 
         var x = document.lastModified;
-        var options = { day: 'numeric', year: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', second: 'numeric'};
+        var options = { day: 'numeric', year: 'numeric', month: 'long', hour: 'numeric', minute: 'numeric', second: 'numeric' };
         document.getElementById("dateStr").innerHTML = new Date(document.lastModified).toLocaleDateString("en-GB", options);
         document.getElementById("yearStr").innerHTML = new Date(document.lastModified).getFullYear();
     </script>
