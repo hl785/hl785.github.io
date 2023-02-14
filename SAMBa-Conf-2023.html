@@ -1,911 +1,1287 @@
 <!DOCTYPE html>
 <html>
-<title>SAMBa Conference 2022</title>
+
 <head>
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-:root {
-   /* Colour scheme */
-   --header-colour: rgb(224, 224, 255);
-   --highlight-colour: #f2a365;
-   --cell1-colour: #30475e;
-   --cell2-colour: #222831;
-   --text-dark: #222831;
-   --text-light: #ececec;
-   --hover-colour: #f8b47f;
-   --link-colour: rgb(224, 224, 255);
-   --visited-link-colour: rgb(215, 180, 255);
-   /* Navigation bar offset */
-   --nav-height: 80px;
-}
+    <title>SAMBa Conference 2023</title>
+    <link rel="icon" href="images/favicon.svg" , sizes="any">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+    <style>
+        :root {
+            /* Colour scheme */
+            --light-colour: rgb(88.999939%, 86.698914%, 82.398987%);
+            --dark-colour: rgb(34.899902%, 28.999329%, 25.898743%);
+            --white-colour: rgb(100%, 100%, 100%);
+            --black-colour: rgb(0%, 0%, 0%);
+        }
 
-html {
-   scroll-behavior: smooth;
-   scroll-padding-top: var(--nav-height); /* Compensate for fixed navigation bar */
- }
+        html {
+            height: 100%;
+            font-family: "Inconsolata", sans-serif;
+            scroll-behavior: smooth;
+        }
 
- /* To add a file: chmod og+r ~ss2767/public_html/photo.gif */
+        body {
+            margin: 0;
+        }
 
-body { 
-   font-family: Lato,'Helvetica Neue',Helvetica,Arial,sans-serif;  
-   background:var(--text-dark);  /* 3565ad nice colour */
-   margin: 0;
-   font-size: 1.3em;
-   padding-top: var(--nav-height); /* Compensate for fixed navigation bar */
-   }   
-:link { /* unvisited links */
-   background: transparent; 
-   color: var(--link-colour); 
-   text-decoration: none;
-   } 
-:visited { /* visited links */
-   background: transparent; 
-   color: var(--visited-link-colour); 
-   } 
-:link:hover, :visited:hover, :link:active, :visited:active { 
-   background: transparent; color: var(--highlight-colour); 
-   text-decoration: underline;
-   }
-dt {/* Descriptive term in a descriptive list */
-   color:var(--highlight-colour) ; font-weight: bold;
-}
+        :link {
+            /* unvisited links */
+            background: transparent;
+            text-decoration: none;
+        }
+
+        :visited {
+            /* visited links */
+            background: transparent;
+            text-decoration: none;
+        }
+
+        :link:hover,
+        :visited:hover,
+        :link:active,
+        :visited:active {
+            background: transparent;
+            color: var(--dark-colour);
+            text-decoration: underline;
+        }
 
 
-/* ############################################################### */
-/* Schedule table */
-table, td, th {
-   border:2px solid var(--highlight-colour);
-   border-collapse: collapse;
-   text-align: center;
-}
-/* tr:hover {
-   background-color: var(--hover-colour);
-} */
-td:nth-child(1) {
-   color: var(--text-dark); 
-}
-.center{
-   margin-left: auto;
-   margin-right: auto;
-}
+        /* ############################################################### */
+        /* Schedule table */
+        table,
+        td {
+            border: 2px solid var(--highlight-colour);
+            border-collapse: collapse;
+            text-align: center;
+        }
 
-/* ############################################################### */
-/* Footer */
-.footer { 
-   height: 1.2em;
-   text-align: center;  
-   background: rgb(82, 82, 82); 
-   width: 100%;
-   position: relative;
-   bottom: 0px;
-   font-size: 80%;
-}
+        td:nth-child(1) {
+            color: var(--text-dark);
+        }
 
-.row{
-   padding: 16px 20%;
-   color: var(--text-light);
-   text-align: justify;
-   }
-.row:nth-of-type(even){background-color: var(--cell1-colour);}
-.row:nth-of-type(odd){background-color: var(--text-dark);}
-h2{
-   border-bottom: thin solid;
-   font-size: 35px;
-   padding: 0px 0px;
-   width: 100%;
-   background: transparent;
-   text-align: center;
-}
-h1 { 
-   font-size: 50px;  
-   color:var(--text-light);
-   border-bottom: medium solid;
-   font-weight: bold;
-   }
-.column {
-  float: left;
-  width:33.33333%;
-}
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-/* ############################################################### */
-/* Speaker abstracts / Collapsable sections */
-.collapsible {
-  cursor: pointer;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 1em;
-  background: transparent;
-  color: var(--link-colour); font-weight: bold;
-}
-button.collapsable:hover{
-   color: var(--highlight-colour);
-   background:rgb(215, 180, 255);
-}
-.collapse-content {
-  padding: 0 18px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-/* ############################################################### */
-/* Navigation bar */
-.nav-container {
-   width: 100%;
-   background-color: var(--highlight-colour);
-   position: fixed;
-   margin: 0;   padding: 0;  top: 0;
-   box-sizing: border-box;
-}
-.navbar  {
-   display: grid;
-   grid-template-columns: 0.2fr auto 1fr;
-   margin: 0 auto; padding: 0; height: var(--nav-height);
-   width: 90%;
-   align-items: center;
-   box-sizing: border-box;
-}
-#navbar-logo {
-   color:var(--text-dark);
-   font-size: 20px;
-   box-sizing: border-box;
-   margin: 0;
-   padding: 0; 
-   position: absolute;
-}
-.nav-menu {
-   display: grid;
-   grid-template-columns: repeat(5,auto);
-   list-style: none;
-   text-align: center;
-   width: 60%;
-   justify-self: right;
-   box-sizing: border-box;
-}
-.nav-links {
-   color:var(--text-dark);
-   font-weight: bold;
-   padding: 20px;
-}
-.nav-links:hover{
-   color:var(--text-dark);
-   text-decoration: none;
-   background-color:var(--hover-colour);
-   transition: all 0.2s ease-out;
-}
+        /* ############################################################### */
+        /* Footer */
+        .footer {
+            height: 1.2em;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            bottom: 0px;
+            font-size: 80%;
+        }
 
-/* Mobile menu toggle button*/
-.menu-toggle .bar {
-   width: 25px;
-   height: 3px;
-   margin: 5px auto;
-   transition: all 0.3s ease-in-out;
-   background: var(--text-dark);
-}
-.menu-toggle{padding: 5px 5px;}
-/* Change color of topnav links on hover */
-#nav-menu a:hover {background-color:var(--hover-colour); }
+        .row {
+            padding: 16px 20%;
+            text-align: justify;
+        }
+
+        h2 {
+            border-bottom: thin solid;
+            font-size: 35px;
+            padding: 0px 0px;
+            width: 100%;
+            background: transparent;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 50px;
+            border-bottom: medium solid;
+            font-weight: bold;
+        }
+
+        .column {
+            float: left;
+            width: 33.33333%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* ############################################################### */
+        /* Speaker abstracts / Collapsible sections */
+        .collapsible {
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1em;
+            background: transparent;
+            font-weight: bold;
+        }
+
+        .collapse-content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        /* ############################################################### */
+        /* Navigation bar */
+        .nav-container {
+            width: 100%;
+            position: sticky;
+            margin: 0;
+            padding: 0;
+            top: 0;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        .navbar {
+            display: grid;
+            grid-template-columns: 0.2fr auto 1fr;
+            margin: 0 auto;
+            padding: 0;
+            height: 80px;
+            width: 90%;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        #navbar-logo {
+            justify-self: start;
+            font-size: 20px;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu {
+            display: grid;
+            grid-template-columns: repeat(5, auto);
+            list-style: none;
+            text-align: center;
+            width: 90%;
+            justify-self: right;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links {
+            font-weight: bold;
+            padding: 15px;
+        }
+
+        /* Mobile menu toggle button*/
+        .menu-toggle .bar {
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            transition: all 0.3s ease-in-out;
+            background: var(--white-colour);
+        }
+
+        .menu-toggle {
+            padding: 5px 5px;
+        }
+
+        .fixBgImg {
+            background-position: center;
+            background-attachment: fixed;
+            background-size: contain;
+            background-image: url("images/confMainBackground.svg");
+        }
+
+        .blur {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--black-colour)
+        }
+
+        @media (prefers-color-scheme: dark) {
+
+            :link:hover,
+            :visited:hover,
+            :link:active,
+            :visited:active {
+                background: transparent;
+                color: var(--light-colour);
+                text-decoration: underline;
+            }
+
+            .blur {
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                color: var(--white-colour)
+            }
+        }
+
+        /* Responsive layout - when the screen is less than 1000px wide,  */
+        @media screen and (max-width: 1000px) {
+
+            /* Collapsable nav bar */
+            .nav-menu {
+                display: grid;
+                grid-template-columns: auto;
+                background: var(--highlight-colour);
+                margin: 0;
+                width: 100%;
+                position: absolute;
+                top: 80px;
+                left: -100%;
+                opacity: 0;
+                transition: all 0.5s ease;
+            }
+
+            .nav-menu.active {
+                background: var(--highlight-colour);
+                left: 0;
+                opacity: 1;
+                transition: all 0.5s ease;
+            }
+
+            .nav-links {
+                text-align: center;
+                line-height: 60px;
+                width: 100%;
+                display: table;
+            }
+
+            .nav-links:hover {
+                transition: all 0.4s ease-out;
+            }
+
+            .nav-bar {
+                width: 100%;
+            }
+
+            #mobile-menu {
+                position: absolute;
+                top: 20%;
+                right: 5%;
+                transform: translate(5%, 20%);
+            }
+
+            .menu-toggle .bar {
+                display: block;
+                cursor: pointer;
+            }
+
+            .menu-toggle:hover {
+                cursor: pointer;
+            }
+
+            /* Change menu bar to cross when listing anchors */
+            #mobile-menu.is-active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            #mobile-menu.is-active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            #mobile-menu.is-active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            #navbar-logo {
+                position: absolute;
+            }
+
+            /* make the columns stack on top of each other instead of next to each other */
+            .column {
+                width: 100%;
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .row {
+                padding: 10px 10%
+            }
+        }
 
 
-/* Responsive layout - when the screen is less than 1000px wide,  */
-@media screen and (max-width: 1200px) {
-   /* Collapsable nav bar */
-   .nav-menu {
-      display: grid;
-      grid-template-columns: auto;
-      background: var(--highlight-colour);
-      margin: 0;
-      width: 100%;
-      position: absolute;
-      top: 80px;
-      left: -100%;
-      opacity: 0;
-      transition: all 0.5s ease;
-   }
-   .nav-menu.active {
-      background: var(--highlight-colour);
-      left: 0;
-      opacity: 1;
-      transition: all 0.5s ease;
-   }
-   .nav-links{
-      text-align: center;
-      line-height: 60px;
-      width: 100%;
-      display: table;
-   }
-   .nav-links:hover {
-      transition: all 0.4s ease-out;
-   }
-   .nav-bar{
-      width: 100%;
-   }
-   #mobile-menu {
-      position: absolute;
-      top: 20%;
-      right: 5%;
-      transform: translate(5%,20%);
-   }
-   .menu-toggle .bar {
-      display: block;
-      cursor: pointer;
-   }
-   .menu-toggle:hover {
-      cursor:pointer;
-   }
-   /* Change menu bar to cross when listing anchors */
-   #mobile-menu.is-active .bar:nth-child(2) {
-      opacity: 0;
-   }
-   #mobile-menu.is-active .bar:nth-child(1) {
-      transform: translateY(8px) rotate(45deg);
-   }
-   #mobile-menu.is-active .bar:nth-child(3) {
-      transform: translateY(-8px) rotate(-45deg);
-   }
-   #navbar-logo{
-      position: absolute;
-   }
-}
- 
-/* ############################################################### */
-@media screen and (max-width: 700px) {
-   /* make the columns stack on top of each other instead of next to each other */
-  .column {   
-    width: 100%;
-    display: block;
-    margin-bottom: 10px;
-  }
-  .row{padding: 10px 10% }
-}
+        /* ############################################################### */
+        /* Cards for conference organisers */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-auto-rows: auto;
+            grid-gap: 1rem;
 
+        }
 
-/* ############################################################### */
-/* Cards for conference organisers */
-.cards {
-   display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-   grid-auto-rows: auto;
-   grid-gap: 1rem;
-   
-}
-.card {
-   border: 2px solid #e7e7e7;
-   border-radius: 1em 1em 1em 1em;
-   text-align: center;
-   padding: .5rem;
- }
-.card:hover {box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
-.container {padding: 2px 16px;}
+        .card {
+            border: 2px solid #e7e7e7;
+            border-radius: 1em 1em 1em 1em;
+            text-align: center;
+            padding: .5rem;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
 
 
 
-.sponsors {
-   display: flex;
-   /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
-   grid-auto-rows: auto;
-   justify-content: center;
-}
-img {
-   border-radius: 2%;
-}
+        .sponsors {
+            display: flex;
+            /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+            grid-auto-rows: auto;
+            justify-content: center;
+        }
 
-</style>
+        img {
+            border-radius: 2%;
+        }
+    </style>
 </head>
 
 <!-- Start of the document body -->
 <!-- ############################################################### -->
-<!-- ############################################################### -->
-<!-- ############################################################### -->
-<!-- ############################################################### -->
+
 <body>
-
-<div class="nav-container">
-   <div class="navbar">
-      <h1 id="navbar-logo"> SAMBa CONFERENCE 2022</h1>
-      <div class="menu-toggle" id="mobile-menu">
-         <span class="bar"></span>
-         <span class="bar"></span>
-         <span class="bar"></span>
-      </div>
-      <ul class="nav-menu">
-         <li><a href="#welcome" class="nav-links">WELCOME</a></li>
-         <li><a href="#registration" class="nav-links">REGISTRATION</a></li>
-         <li><a href="#schedule" class="nav-links">SCHEDULE</a></li>
-         <li><a href="#organisers" class="nav-links">ORGANISERS</a></li>
-         <li><a href="index.html" class="nav-links">RETURN</a></li>
-      </ul>
-   </div>
-</div>
-
-
-<!-- Start of page content -->
-<!-- ############################################################### -->
-<div class="row" id="welcome">
-   <div class="sponsors">
-      <a href= "https://www.bath.ac.uk/centres-for-doctoral-training/epsrc-centre-for-doctoral-training-in-statistical-applied-mathematics-samba/"> <img src="images/samba-logo.png" alt="SAMBa logo." style="width:100%; height:auto; max-width:405px" ></a>
-      <a href= "https://www.ukri.org/councils/epsrc/"> <img src="images/ukri-logo.png" alt="UKRI logo." style="width:100%; height:auto; max-width:405px" ></a>
-   </div>
-
-   <h2>SPONSORED BY</h3>
-      <div class="sponsors">
-         <a href= "https://spectraanalytics.com/"> <img src="images/Spectra-Analytics-logo.png" alt="Spectra Analytics logo." style="width:100%; height:auto; max-width:405px; background:var(--text-light); padding:.2em" ></a>
-         </div>
-
-         
-      <h2>WELCOME & INFORMATION</h2>
-      <h3>Welcome to the 6th SAMBa Summer Conference, taking place Tuesday 5th and Wednesday 6th of July 2022. </h3>
-      <p> The SAMBa conference is 
-         an opportunity for students to showcase their work to members of the department, outside the department 
-         and at other Universities in a supportive environment. The work of SAMBa students covers the entire spectrum 
-         of statistical applied mathematics: including projects in statistics, probability, analysis, numerical 
-         analysis, mathematical biology, fluid dynamics, machine learning and high-performance computing. The 
-         conference is organized by students and contains talks by SAMBa students, external speakers, and students
-          from other departments and institutions.</p>
-      <dt>This website will be updated with conference details as they are confirmed, including speakers, abstracts, 
-         registration forms, and the conference schedule.</dt>
-      <p>The conference will be hosted in the Wolfson Lecture Theatre, 4 West room 1.7, the Mathematical Sciences department of the University of Bath</p>
-      <dd><address>
-         Department of Mathematical Sciences,<br>
-         University of Bath,<br>
-         Claverton Down,<br>
-         Bath, BA2 7AY,<br>
-         United Kingdom<br>
-            </address></dd>
-      <p>Travel information for getting to the University of Bath campus can be found on the <a href="https://www.bath.ac.uk/topics/travel-advice/">University of Bath Travel Advice page</a> </p>
-</div>
-
-<!-- ############################################################### -->
-<div class="row" id="registration">
-   <h2>REGISTRATION</h2>
-   <p> Registration for the conference is now closed. Please email one of the committee if you have any questions.
-    </p>
-    <p>All attendees are expected to follow the <a href="CodeOfConduct.pdf"> SAMBa Conference Code of Conduct</a>.</p>
-
-</div>
-
-
-<!-- ############################################################### -->
-<div class="row" id="schedule">
-   <h2>CONFERENCE SCHEDULE</h2>
-    <!-- THIS SCHEDULE IS SUBJECT TO CHANGE -->
-   <p>Below is the schedule for the conference. The list of speakers can be found below the timetable with 
-      their titles and abstracts updated when they become available. Each session of talks is linked nominally
-       by theme, given to provide an idea of focus for the session.</p>
-<p>The conference programmge, which includes the schedule,  <a href="SAMBaConf22-programme.pdf">can be downloaded in PDF format</a>.</p>
-       <table class="center">
-         <colgroup>
-            <col span="1" style="background-color: var(--highlight-colour); color:var(--text-dark)" width="10%"   >
-            <col width="45%" />
-            <col width="45%" />
-         </colgroup>
-         <tr style="background-color: var(--highlight-colour); color:var(--text-dark);" >
-            <td><b>Time</b></td>
-            <td><b>Tuesday (5th July)</b></td>
-            <td><b>Wednesday (6th July)</b></td>
-         </tr>
-         <tr><td>09:30</td>
-            <td rowspan="1"><b>Arrivals and Registration </b></td>
-            <td rowspan="2"><b>Arrivals with Coffee</b></td>
-         <tr><td>09:45</td> 
-            <td><b>Welcome talk</b></td></tr>
-         <tr><td>10:00</td>
-            <td rowspan="4"><b style="color: var(--highlight-colour)">Keynote Talk </b><br /> <u>Chair:</u> Carmen <br /> <u>Speaker:</u> <br> Jane Hutton<br></td>
-            <td rowspan="4"><b style="color: var(--highlight-colour)">Keynote Talk </b><br /> <u>Chair:</u> Jenny <br /> <u>Speaker:</u> <br> Cameron Hall<br></td>
-         <tr><td>10:15</td></tr>
-         <tr><td>10:30</td></tr>
-         <tr><td>10:45</td></tr>
-         <tr><td>11:00</td>
-            <td rowspan="1"><b>Break</b></td>
-            <td rowspan="1"><b>Break</b></td>
-         <tr><td>11:15</td>
-            <td rowspan="3"><b style="color: var(--highlight-colour)">Session 1a </b><br /> <u>Chair:</u> Fraser <br /> <u>Speakers:</u> <br> Abby Barlow,<br> Andrei Sontag</td>
-            <td rowspan="3"><b style="color: var(--highlight-colour)">Session 3a </b><br /> <u>Chair:</u> Matthew <br /> <u>Speakers:</u> <br> Piotr Morawiecki,<br> Cecilie Andersen</td>
-         <tr><td>11:30</td></tr>
-         <tr><td>11:45</td></tr>
-         <tr><td>12:00</td>
-            <td rowspan="1"><b>Break</b></td>
-            <td rowspan="1"><b>Break</b></td>
-         <tr><td>12:15</td>
-            <td rowspan="1"><b style="color: var(--highlight-colour)">Session 1b </b><br /> <u>Chair:</u> Fraser <br /> <u>Speaker:</u> <br> Theodora Syntaka</td>
-            <td rowspan="3"><b style="color: var(--highlight-colour)">Session 3b </b><br /> <u>Chair:</u> Jenny <br /> <u>Speakers:</u> <br> Eileen Russell,<br> Kat Phillips</td>
-         <tr><td>12:35</td>
-            <td rowspan="2"><b>Conference Photo</b></td></tr>
-         <tr><td>12:45</td>
-         <tr><td>13:00</td>
-            <td rowspan="4"><b>Lunch</b></td>
-            <td rowspan="4"><b>Lunch</b></td>
-         <tr><td>13:15</td>
-         <tr><td>13:30</td></tr>
-         <tr><td>13:45</td>
-         <tr><td>14:00</td>
-            <td rowspan="4"><b style="color: var(--highlight-colour)">Keynote Talk </b><br /> <u>Chair:</u> Fraser <br /> <u>Speaker:</u> <br> Radek Erban</td>
-            <td rowspan="4"><b style="color: var(--highlight-colour)">Lightning Talks </b><br/><u>Chair:</u> Jenny <br /> <u>Speakers:</u> <br> Cohort 8</td>
-         <tr><td>14:15</td></tr>
-         <tr><td>14:30</td></tr>
-         <tr><td>14:45</td>
-         <tr><td>15:00</td>
-            <td rowspan="1"><b>Break</b></td>
-            <td rowspan="1"><b>Break</b></td>
-         <tr><td>15:15</td>
-            <td rowspan="3"><b style="color: var(--highlight-colour)">Session 2a </b><br /> <u>Chair:</u> Carmen <br /> <u>Speakers:</u> <br> Carlo Scali,<br> Yi Sheng Lim</td>
-            <td rowspan="3"><b style="color: var(--highlight-colour)">Session 4 </b><br /><u>Chair:</u> Seb <br /> <u>Speakers:</u> <br> Eric Baruch Gutierrez<br> Fengpei Wang</td>
-         <tr><td>15:30</td>
-         <tr><td>15:45</td>
-         <tr><td>16:00</td>
-            <td rowspan="1"><b>Break</b></td>
-            <td rowspan="1"><b>Break</b></td>
-         <tr><td>16:15</td>
-            <td rowspan="3"><b style="color: var(--highlight-colour)">Session 2b </b><br /> <u>Chair:</u> Matthew<br /> <u>Speakers:</u> <br> Christopher Dean,<br> Josh Inoue</td>
-            <td rowspan="4"><b style="color: var(--highlight-colour)">Keynote Talk </b><br /> <u>Chair:</u> Matthew <br /> <u>Speaker:</u> <br> Katie Steckles<br></td>
-         <tr><td>16:30</td>
-         <tr><td>16:45</td></tr>
-         <tr><td>17:00</td>
-            <td rowspan="4"><b style="color: var(--highlight-colour)">Poster Session </b></br><u>Chair:</u> Seb, Jenny, Fraser <br /> </td>
-         <tr><td>17:15</td>
-            <td rowspan="1"> <b>Closing Remarks</b></td>
-         <tr><td>17:30</td>
-         <tr><td>17:45</td>
-         <tr><td>18:00</td>
-            <td rowspan="4">Walk into town <br /> </td>
-         <tr><td>18:15</td>
-         <tr><td>18:30</td>
-         <tr><td>18:45</td>
-         <tr><td>19:00</td>
-            <td rowspan="1"> <b>In-Person Conference Dinner</b></td></tr>
-      </table> 
-
-
-
-<h2>KEYNOTE SPEAKERS</h2>
-<p>This section lists the confirmed speakers, and their titles and abstracts as they become available.</p>
-
-<div class="speaker">
-   <dt><a href="https://warwick.ac.uk/fac/sci/statistics/staff/academic-research/hutton/">Jane Hutton (University of Warwick)</a> </dt>
-<dl>
-      <dd><b>Title:</b> Epidemics, ethics and uncertainty: the roles of statistics versus mathematics</dd>
-      <dd><button class="collapsible">  View abstract:</button>
-      <div class="collapse-content">
-         A few mathematicians have had considerable influence in the last two years over whether people lived and flourished, or died. Some mathematicians have focussed on designing and implementing mathematical models which only consider a single illness. Applied statisticians know that it is critical to first decide what the question is: "Minimise deaths from Covid-19?" or "Minimise deaths due to Covid-19 and our decisions this year?" or "Minimise the impact of Covid-19 on well-being over ten years?" The ethical status of an expert who gives a simple answer to the first question, without uncertainty or alternatives,  will be examined. 
-         <p>Some publications by influential mathematics groups were directly misleading: in estimating cases of Covid-19, the assumption, made by prominent mathematicians, that PCR test had sensitivity of effectively 100%, and specificity of 80-90%, relied on gross misreading of the references cited. People were placed under effect house arrest, when, on balance of probability, they were innocent of covid.
-         <p>Numbers of "covid" hospitalisations and deaths were quoted without reference to the usual daily numbers, and contributed to created a climate of fear. Predictions of 6,000 UK hospital admissions per day in January 2022 relied on the assumption that South African scientists are incompetent. Their statement that omicron variant of covid-19 has much lower admission and death rates was ignored. I will discuss whether this can be construed as racism, and compare the issues with ideas of racial inequity in UK covid death rates. 
-         </p><p>The uncertainty in diagnostic tests, missing information and measurement errors all feed into transmitted variation. Even in manufacturing glass beads, the variation from engineering specification is not simply determined by considering width, for example, alone. Despite this, mathematical predictions of covid cases were used to justify lockdowns even in countries where people would starve as a consequence. Some statisticians have tried to estimate the damage to children's education and wellbeing, and illness and deaths due to lack of access. 
-         </p><p>I argue that such mathematical modelling cannot be justified within virtue, deontological, utilitarian or care ethics, though Zoroaster or Nietzsche might be invoked. It is always necessary to consider the wider context, and the probable consequences of actions, as explained in the International Statistics Institute Code of Professional Ethics. Assessment of the validity of  model assumptions, data quality, adequacy of the fit of models and accuracy of predictions is essential, and essentially statistical.
-         </p>   </div>
-      </dd>
-   </dl>
-</div>
-
-<div class="speaker">
-   <dt><a href="https://people.maths.ox.ac.uk/%7Eerban/">Radek Erban (Mathematical Institute, University of Oxford)</a> </dt>
-   <dl>
-      <dd><b>Title:</b> Stochastic Modelling of Reaction-Diffusion Processes</dd>
-      <dd><button class="collapsible">  View abstract:</button>
-      <div class="collapse-content">
-         Stochastic reaction-diffusion simulations have been successfully used in a number of biological applications, ranging in size from 
-         spatio-temporal modelling in molecular and cell biology to stochastic modelling of groups of animals. I will discuss connections and 
-         differences between various stochastic reaction-diffusion methodologies, between stochastic and deterministic modelling, and some
-          interesting open mathematical problems. The methods covered will include Brownian dynamics, compartment-based (lattice-based) models,
-           and (all-atom and coarse-grained) molecular dynamics simulations.</div>
-      </dd>
-   </dl>
-</div>
-<div class="speaker">
-   <dt><a href="https://www.bristol.ac.uk/people/person/Cameron-Hall-09d17dde-702b-4bd2-aeed-a6e34cacd5f9/">Cameron Hall (University of Bristol)</a> </dt>
-   <dl>
-      <dd><b>Title:</b> Keeping the lights on: Applied mathematics and the future of electricity</dd>
-      <dd><button class="collapsible">  View abstract:</button>
-      <div class="collapse-content">
-           Mathematical modelling and data analysis underpin practically every aspect of power generation, storage,
-            and supply. On a microscopic scale, mathematical techniques are used to optimise the design of batteries
-             and battery materials; on the macroscopic scale, models are used to ensure the stability of power grids
-              and develop plans for what to do when the unexpected happens. In this talk, I will take a tour through
-               a few problems where mathematics is making an impact on how we understand and control electricity, 
-               and where mathematics has the potential to play a major role in the future as we move towards a
-                net-zero world. </div>
-      </dd>
-   </dl>
-</div>
-
-<div class="speaker"> 
-   <dt><a href="https://katiesteckles.co.uk/">Katie Steckles (University of Manchester)</a> </dt>
-   <dl>
-      <dd><b>Title:</b> Communicating Mathematics</dd>
-      <dd><button class="collapsible">  View abstract:</button>
-      <div class="collapse-content">
-         Mathematics is a difficult subject to communicate, from the abstract ideas and complicated topics it involves, to the public perception of
-          maths as a subject that's difficult and boring - but it's so important to engage people with mathematics, share our love of the subject and
-           communicate how useful and important maths is. Join mathematician and communicator Katie Steckles to hear the story of her 12-year career
-            in outreach, as well as some tips and suggestions for how to get involved in outreach, and make your maths communication engaging and
-             effective.</div>
-      </dd>
-   </dl>
-</div>
-
-
-<h2>STUDENT SPEAKERS</h2>
-<div> 
-   <div class="speaker"> 
-      <dt>Abby Barlow</dt>
-      <dl>
-         <dd><b>Title:</b> The role of households and neighbourhoods in the early stages of an epidemic</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-            We explore how the demographic composition of neighbourhoods influences the risk of an infectious disease outbreak and the early stages
-             of its spread through the population. Infection spreads via transmission between individuals; transmission depends on the contacts and 
-             the structure of contacts within a population is influenced by the spatial arrangement of individuals.  In particular, we might consider 
-             contacts at a household scale, hence distinguishing between the often stronger transmission within the household and weaker transmission
-              within the wider community. The small number of people in each household means that random events can be important, and models usually
-               take a stochastic approach based on Markov processes.
-
-           <p> In this talk, we will introduce a multi-scale metapopulation framework for a population of two neighbourhoods of households. We then
-             use both analytic and numerical methodologies to understand how household size and connectivity between the neighbourhoods influences
-              outbreak probability, infection risk and spread of infection between the two neighbourhoods. This research can inform surveillance and
-               control strategies.</div>
-           </p></dd>
-      </dl>
-   </div>
-</div>
-
-<div> 
-   <div class="speaker"> 
-      <dt>Andrei Sontag</dt>
-      <dl>
-         <dd><b>Title:</b> Awareness spread and the effects of (mis)information on epidemics</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-            The effectiveness of non-pharmaceutical interventions, such as mask-wearing and social distancing, as control measures for pandemic disease relies upon a
-             conscientious and well-informed public who are aware of and prepared to follow advice. Unfortunately, public health messages can be undermined by 
-             competing misinformation and conspiracy theories, spread virally through communities that are already distrustful of expert opinion. Models for 
-             awareness spread are widely used in the literature to explore the effects of information spread on epidemics through coupled feedback dynamics. In this talk, 
-             I will discuss the results presented in our article [1], which investigates a simple model of the interaction between disease spread and awareness dynamics 
-             in a heterogeneous population composed of both trusting individuals who seek better quality information and will take precautionary measures, and distrusting 
-             individuals who reject better quality information and have overall riskier behaviour. We show that, as the density of the distrusting population increases,
-              the model passes through a phase transition to a state in which major outbreaks cannot be suppressed. Our work highlights the urgent need for effective interventions
-               to increase trust and inform the public.
-          <p>  [1] A. Sontag, T. Rogers and C. A. Yates, Misinformation can prevent the suppression of epidemics, J. R. Soc. Interface, 19:20210668, 2022.</div>
-          </p></dd>
-      </dl>
-   </div>
-</div>
-
-<div> 
-   <div class="speaker"> 
-      <dt>Theodora Syntaka</dt>
-      <dl>
-         <dd><b>Title:</b> Long term behavior: From particle dynamics through kinetic equations to fractional diffusion equations</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-         The derivation of continuum equations from a discrete deterministic system of particles is of major interest. This is an area of research in mathematical physics originating from Hilbert's Sixth Problem in 1900. This problem has been approached in two steps using the Boltzmann equation as a mesoscopic description. The first one is to derive kinetic equations, such as the Boltzmann equation, from a system of particles and the second is to derive continuum equations, such as Navier-Stokes and Euler equations, from the Boltzmann equation. Our work is aiming at deriving (fractional) diffusive behaviour from particle models, which can be split in two separate questions. The first one is to derive linear Boltzmann equations from a Rayleigh gas particle system with a fat-tailed background in a suitable limit of many small particles. As a second one is the derivation of diffusive behaviour of linear Boltzmann equations by a scaling limit.</div>
-         </dd>
-      </dl>
-   </div>
-</div>
-
-<div> 
-   <div class="speaker"> 
-      <dt>Carlo Scali </dt>
-      <dl>
-         <dd><b>Title:</b> Weakly quenched scaling limit for the one-dimensional, biased random walk on heavy-tailed conductances</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-            Consider the 1-dimensional, biased random walk on random conductances in the sub-ballistic regime; that is, when the law of large numbers 
-            for the position of the random walk is \(X_n/n \to 0\), even if the random walk is transient in one direction. This happens when the random 
-            conductances or their inverse have infinite first moment. Under necessary technical conditions, Berger and Salvi (2020) proved an annealed 
-            scaling limit. I will explain that it is impossible to extend this statement to a quenched result, which would correspond to a limit in
-             distribution for the law of the walk conditioned on the environment, holding for almost all environments. This can be shown by proving
-              that the law of the walk showcases multiple accumulation points in almost all environments. I will also discuss that it is possible to 
-              obtain a weakly quenched result, that is a limit conditioned on the environment, holding for environments in a set whose probability goes
-               to \(1\) as \(n \to \infty\).</div>
-         </dd>
-      </dl>
-   </div>
-</div>
-
-<div> 
-   <div class="speaker"> 
-      <dt>Yi Sheng Lim</dt>
-      <dl>
-         <dd><b>Title:</b> An operator approach to high-contrast homogenization</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-            Homogenization refers to the approximation of PDEs with rapidly oscillating coefficients with a nice 
-            (constant coefficient) PDE. Physically, we can think of a composite that is obtained by finely mixing
-             together a "soft" and a "stiff" material. Mathematically, we can study the PDE \(-\text{div}(a(x/\varepsilon) \nabla u^{\varepsilon} ) = f,\)
-              where the coefficient matrix is \(a(x)\) is 1-periodic and takes values \(c_{\text{soft}} I\) at the "soft"
-               regions, and \(c_{\text{stiff}} I\) at the "stiff" regions. We want to take \(\varepsilon \to 0\).
-
-            <p>In this talk, we will look at the "high-contrast" case \(c_{\text{soft}} = \varepsilon^2\) and \(c_{\text{stiff}} = 1\). 
-            In other words, there is a loss of ellipticity in the limit. I will explain the main ideas behind the operator theoretic 
-            framework developed by Cherednichenko, Ershova, and Kiselev (2020). The key object is that of a "boundary triple" in 
-            the sense of Ryzhov (2009). This gives us approximations in the operator norm, which in turn gives us direct access to
-             the spectrum.</p></div>
-         </dd>
-      </dl>
-   </div>
-</div>
-
-<div> 
-   <div class="speaker"> 
-      <dt>Christopher Dean </dt>
-      <dl>
-         <dd><b>Title:</b> Pólya urns with growing initial compositions</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-            A Pólya urn is a Markov process describing the contents of an urn that contains balls of d colours. At every time step, we draw 
-            a ball uniformly for the urn, note its colour, then put it back in the urn along with a set of new balls which depend on the colour
-             drawn. The number of balls of colour j added when colour i is drawn is given by the (i,j)th entry of a predetermined replacement
-              matrix R. For most replacement matrices, the asymptotic behaviour as the number of draws tend to infinity can be inferred from the 
-              following two canonical cases. If R is the identity matrix, the proportion of each colour in the urn tends to a Dirichlet distributed 
-              random variable with parameter given by the urn's initial composition. If R is irreducible, this limit is a deterministic vector 
-              that only depends on R. Fluctuations around these limits are also known.
-
-            <p>Recently, for the identity replacement matrix, results have been shown on the asymptotic behaviour of the urn when the initial 
-               number of balls grows together with the number of time steps. In this talk, I will show new analogous results for the irreducible
-                replacement matrix. This includes the asymptotic behaviour of the proportion of each colour in the urn and the fluctuations
-                 around this limit.</div>
-            </p></dd>
-      </dl>
-   </div>
-</div>
-
-<div> 
-   <div class="speaker"> 
-      <dt>Josh Inoue </dt>
-      <dl>
-         <dd><b>Title:</b> Spatio-temporal Change-point Detection</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-            When analysing spatio-temporal data in applications such as in environmental, ecological, or epidemiological settings, detecting
-             abrupt changes over space and or time gives insight into the underlying mechanics of a system and can have a significant impact
-              in the interpretation of the evolution and future state of the process. We will look at methods that analyse spatio-temporal data 
-              and detect changes and discuss how we will overcome issues that arise such as high-dimensionality, where in particular, we propose
-               ways of using the spatial information to provide a constraint on the model to reduce the problem dimension.</div>
-         </dd>
-      </dl>
-   </div>
-</div>
-
-<div> 
-   <div class="speaker"> 
-      <dt>Piotr Morawiecki</dt>
-      <dl>
-         <dd><b>Title:</b> Mathematics of floods: developing an asymptotic framework for the unification of rainfall-runoff models</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-            One of the key problems in flood estimation is to predict the flow in the river after an intensive rainfall. Many physical 
-            and data-based models were constructed to address this problem; however, they are often based on completely different assumptions 
-            and their limits of applicability remain unknown. During the talk I am going to give an overview of our work in systematically 
-            developing a rigorous mathematical framework to better understand the relations between currently used models.  We start by 
-            constructing a simple benchmark scenario for coupled surface-subsurface flows. Then we use it to better understand the physical
-             process of river flow formation and compare obtained results to the statistical flood estimation model recommended for use in 
-             UK. In this way we demonstrate the potential of this mathematical framework as a tool for assessing models' assumptions and 
-             limitations, which is not provided by numerical testing traditionally performed by hydrologists.</div>
-         </dd>
-      </dl>
-   </div>
-</div>
-
-<div> 
-   <div class="speaker"> 
-      <dt>Cecilie Andersen </dt>
-      <dl>
-         <dd><b>Title:</b> Selection mechanisms and complex singularities in the falling jet problem</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-            The precise characterisation of the set of steady-state solutions for a rising bubble in a tube remains an open 
-            problem. Here, we consider a two-dimensional bubble which rises, under the influence of gravity and at constant 
-            velocity, in a tube filled with an ideal fluid. When surface tension is included, it is known that the velocity 
-            of the bubble must be selected from a countably infinite set of possible values. This is similar to the selection 
-            mechanism in the classic Saffman-Taylor viscous fingering problem but the introduction of gravity complicates the
-             analysis of the rising bubble. In this talk, we discuss the surprising complexity that characterises the complex
-              analytic structure of the zero surface-tension case, and also the challenges of resolving this selection mechanism 
-              in the small surface tension limit.</div>
-         </dd>
-      </dl>
-   </div>
-</div>
-
-
-<div> 
-   <div class="speaker"> 
-      <dt>Eileen Russell </dt>
-      <dl>
-         <dd><b>Title:</b> Faraday Wave-Droplet Dynamics</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-         A millimetric droplet of silicon oil will bounce periodically on a suitably vibrating bath. Increasing the amplitude of the vibrations, the droplet walks across the surface and as the amplitude increases further the droplet's motion becomes chaotic. This system is of interest to many mathematicians and physicists as it bears resemblance to the quantum realm. Indeed, the droplet has both a mass and a wavefield which is compared to quantum mechanic's wave-particle duality hypothesis. Many physicists have succeeded in creating analogues between this system and common features of quantum mechanics such as tunnelling, diffraction, interference, and quantised orbits.
-<p> In this talk, we discuss a complex fluid dynamics model used to depict this system. We perform a number of reductions in order to simplify the mathematical complexity of the system whilst maintaining the principal dynamics of the system. We discuss the stability of the steady states that arise in our models and compare and contrast our results with the more in-depth models.</div>
-         </dd>
-      </dl>
-   </div>
-</div>
-
-<div> 
-   <div class="speaker"> 
-      <dt>Kat Phillips </dt>
-      <dl>
-         <dd><b>Title:</b> Lubrication layer cushioned capillary-scale rebound dynamics</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-            A droplet falling towards a free surface must first make its way through a layer of air acting as a barrier 
-            between the two liquids, preventing coalescence. In a millimetric regime, the capillary action of the free 
-            surface may dominate the dynamics of the interaction and is able to provide an upward kick to rebound the 
-            droplet prior the full evacuation of the air layer, which would have allowed coalescence. In such a regime,
-             the trapped air acts as a lubrication layer between the impactor and the free surface. To leading order, 
-             such a millimetric droplet acts as a rigid sphere, allowing developments of numerical models for solid-liquid
-              impacts to be a reasonable approximation of droplet dynamics. In this talk, we present the development of
-               a 2D model of a millimetric solid sphere impacting on a free surface. By taking a multi-scale approach, 
-               we include the air layer as a dynamical component in the system through coupling an asymptotic derivation
-                of the leading order problem, with psuedo-spectral methods to model the behaviour of the free surface,
-                 and smaller scale lubrication regime for the dynamics of the cushioning layer.</div>
-         </dd>
-      </dl>
-   </div>
-</div>
-<div> 
-   <div class="speaker"> 
-      <dt>Eric Baruch Gutierrez </dt>
-      <dl>
-         <dd><b>Title:</b> Random Primal-Dual Method with applications to Parallel MRI</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-            Stochastic Primal-Dual Hybrid Gradient, or SPDHG, is an algorithm proposed by Chambolle et al. to efficiently solve a wide class
-             of nonsmooth large-scale optimization problems. Recently we proved its almost sure convergence for all convex functionals. In
-              addition, we apply SPDHG to parallel Magnetic Resonance Imaging reconstruction. Numerical results suggest significantly faster
-               convergence for SPDHG than its deterministic counterpart. Furthermore, we'll see how the physical properties of MRI models might
-                give us a clue on how to optimize our random process.</div>
-         </dd>
-      </dl>
-   </div>
-</div>
-
-<div> 
-   <div class="speaker"> 
-      <dt>Fengpei Wang </dt>
-      <dl>
-         <dd><b>Title:</b> What can we do with the large scale optimal transport problem?</dd>
-         <dd><button class="collapsible">  View abstract:</button>
-         <div class="collapse-content">
-            What can we do with the large scale optimal transport problem? Optimal transport (OT) problem is to find the joint distribution of 
-            two distributions that minimises the total cost. By adding an entropic regularisation term, the problem becomes a differentiable and 
-            convex optimization problem. For two discrete distributions, this regularised OT problem can be solved efficiently by using the Sinkhorn 
-            algorithm. However, it is still challenging to solve the large-scale OT and the non-discrete OT.
-            In this talk, we will introduce the Online Sinkhorn algorithm (Mensch et al. 2020) which is designed for the non-discrete OT problems,
-             and the low rank formulations for the large-scale OT problems.
+    <div class="nav-container w3-black">
+        <div class="navbar">
+            <h1 id="navbar-logo">
+                <a href="#" class="w3-button w3-black">SAMBa CONFERENCE 2023</a>
+            </h1>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
-         </dd>
-      </dl>
-   </div>
-</div>
-
-
-</div>
-
-<!-- ############################################################### -->
-<div class="row" id="organisers">
-   <h2>ORGANISERS</h2>
-   <p>The 2022 SAMBa conference is being organised by five SAMBa Cohort 7 PhD students. If you have any questions,
-       please feel free to contact any of us using the information below.
-   </p>
-   
-   <div class="cards">
-      <div class="card">
-         <img src="images/profile-carmen.png" alt="Picture of Carmen, one of the conference organisers." style="width:100%">
-         <div class="container">
-            <h4><b>Carmen van-de-l'Isle</b></h4> 
-            <p><a href="mailto:ccvdli20@bath.ac.uk" class="clean-link">ccvdli20@bath.ac.uk</a></p> 
-         </div>
-      </div>
-
-      <div class="card">
-         <img src="images/profile-fraser.png" alt="Picture of Fraser, one of the conference organisers." style="width:100%">
-         <div class="container">
-            <h4><b>Fraser Waters</b></h4> 
-            <p><a href="mailto:frw22@bath.ac.uk" class="clean-link">frw22@bath.ac.uk</a></p> 
-         </div>
-      </div>
-
-      <div class="card">
-         <img src="images/profile-jenny.png" alt="Picture of Jenny, one of the conference organisers." style="width:100%">
-         <div class="container">
-            <h4><b>Jenny Power</b></h4> 
-            <p><a href="mailto:jip30@bath.ac.uk" class="clean-link">jip30@bath.ac.uk</a></p> 
-         </div>
-      </div>
-
-      <div class="card">
-         <img src="images/profile-matthew.png" alt="Picture of Matthew, one of the conference organisers." style="width:100%">
-         <div class="container">
-            <h4><b>Matthew Pawley</b></h4> 
-            <p><a href="mailto:mtp34@bath.ac.ukk" class="clean-link">mtp34@bath.ac.uk</a></p> 
-         </div>
-      </div>
-
-      <div class="card">
-         <img src="images/profile-seb.png" alt="Picture of Seb, one of the conference organisers." style="width:100%">
-         <div class="container">
-            <h4><b>Seb Scott</b></h4> 
-            <p><a href="mailto:ss2767@bath.ac.uk" class="clean-link">ss2767@bath.ac.uk</a></p> 
-         </div>
-      </div>
-   </div>
-</div>
+            <ul class="nav-menu">
+                <li><a href="#welcome" class="nav-links w3-button w3-black">WELCOME</a></li>
+                <li><a href="#registration" class="nav-links w3-button w3-black">REGISTRATION</a></li>
+                <li><a href="#schedule" class="nav-links w3-button w3-black">SCHEDULE</a></li>
+                <li><a href="#organisers" class="nav-links w3-button w3-black">ORGANISERS</a></li>
+                <li><a href="index.html" class="nav-links w3-button w3-black">RETURN</a></li>
+            </ul>
+        </div>
+    </div>
 
 
 
-<!-- ############################################################### -->
-<div class="footer">
-  <div class="container">
-     Last updated May 2022
-     </div>
-</div>
+    <!-- Start of page content -->
+    <!-- ############################################################### -->
+    <div class="w3-large fixBgImg">
+        <div class="row" id="welcome">
+            <div class="sponsors">
+                <a href="https://samba.ac.uk/" class="center blur">
+                    <img src="images/SAMBaLogo.svg" alt="SAMBa logo" style="width:100%; height:auto; max-width:405px">
+                </a>
+                <a href="https://www.ukri.org/councils/epsrc/" class="center blur">
+                    <img src="images/ukriLogo.svg" alt="UKRI logo." style="width:100%; height:auto; max-width:405px">
+                </a>
+            </div>
 
-<!-- End of page content-->
-<!-- ############################################################### -->
-<!-- ############################################################### -->
-<!-- ############################################################### -->
-
-<!-- Smooth scroll with disappearing top menu -->
-<!-- <script>
-   window.onscroll = function() {scrollTrack()};
-   
-   var navbar = document.getElementById("navbar");
-   var sticky = navbar.offsetTop;
-   
-   function scrollTrack() {
-     if (window.pageYOffset >= sticky) {
-       navbar.classList.add("sticky")
-     } else {
-       navbar.classList.remove("sticky");
-     }
-   }
-</script> -->
+            <h5 class="w3-center w3-padding-8"><span class="w3-tag w3-wide">SPONSORED BY</span></h5>
+            <div class="sponsors blur">
+                <!-- <a href="https://spectraanalytics.com/"> <img src="images/Spectra-Analytics-logo.png"
+                            alt="Spectra Analytics logo."
+                            style="width:100%; height:auto; max-width:405px; background:var(--text-light); padding:.2em"></a> -->
+                <p>Currently nobody! Your logo could be here.</p>
+            </div>
 
 
-<!-- Collapsable navigation menu -->
-<script>
-   const menu = document.querySelector('#mobile-menu');
-   const menuLinks = document.querySelector('.nav-menu');
+            <h2 class="w3-center w3-padding-32"><span class="w3-tag w3-wide">WELCOME & INFORMATION</span></h2>
+            <p class="w3-card w3-center w3-padding-24 blur">
+                Welcome to the 7th SAMBa Summer Conference, taking place Tuesday 11th and Wednesday 12th of July 2023.
+            </p>
+            <p class="w3-card w3-center w3-padding-24 blur">
+                The SAMBa conference is an opportunity for students to showcase their work to members of the department,
+                outside the department and at other Universities in a supportive environment. The work of SAMBa students
+                covers the entire spectrum of statistical applied mathematics: including projects in statistics,
+                probability, analysis, numerical analysis, mathematical biology, fluid dynamics, machine learning and
+                high-performance computing. The conference is organized by students and contains talks by SAMBa
+                students, external speakers, and students from other departments and institutions.
+            </p>
+            <p class="w3-card w3-center w3-padding-24 blur">
+                This website will be updated with conference details as they are confirmed, including speakers,
+                abstracts, registration forms, and the conference schedule.
+            </p>
+            <p class="w3-card w3-center w3-padding-24 blur">
+                The conference will be hosted in the Wolfson Lecture Theatre, 4 West room 1.7, the Mathematical Sciences
+                department of the University of Bath
+            </p>
+            <dd class="w3-card w3-center w3-padding-24 blur">
+                <address>
+                    Department of Mathematical Sciences,<br>
+                    University of Bath,<br>
+                    Claverton Down,<br>
+                    Bath, BA2 7AY,<br>
+                    United Kingdom<br>
+                </address>
+            </dd>
+            <p>Travel information for getting to the University of Bath campus can be found on the <a
+                    href="https://www.bath.ac.uk/topics/travel-advice/">University of Bath Travel Advice page</a>
+            </p>
+        </div>
 
-   menu.addEventListener('click', function() {
-      menu.classList.toggle('is-active');
-      menuLinks.classList.toggle('active');
-   })
-   menuLinks.addEventListener('click', function() {
-      menu.classList.toggle('is-active');
-      menuLinks.classList.toggle('active');
-   })
-</script>
+        <!-- ############################################################### -->
+        <div class="row" id="registration">
+            <h2>REGISTRATION</h2>
+            <p> Registration for the conference is now closed. Please email one of the committee if you have any
+                questions.
+            </p>
+            <p>All attendees are expected to follow the <a href="CodeOfConduct.pdf"> SAMBa Conference Code of
+                    Conduct</a>.
+            </p>
+
+        </div>
 
 
-<!-- Collapsable button -->
-<script>
-   var coll = document.getElementsByClassName("collapsible");
-   var i;
-   
-   for (i = 0; i < coll.length; i++) {
-     coll[i].addEventListener("click", function() {
-       this.classList.toggle("active");
-       var content = this.nextElementSibling;
-       if (content.style.maxHeight){
-         content.style.maxHeight = null;
-       } else {
-         content.style.maxHeight = content.scrollHeight + "px";
-       } 
-     });
-   }
-   </script>
+        <!-- ############################################################### -->
+        <div class="row" id="schedule">
+            <h2>CONFERENCE SCHEDULE</h2>
+            <!-- THIS SCHEDULE IS SUBJECT TO CHANGE -->
+            <p>Below is the schedule for the conference. The list of speakers can be found below the timetable with
+                their titles and abstracts updated when they become available. Each session of talks is linked nominally
+                by theme, given to provide an idea of focus for the session.</p>
+            <p>The conference programmge, which includes the schedule, <a href="SAMBaConf22-programme.pdf">can be
+                    downloaded
+                    in PDF format</a>.</p>
+            <table class="center">
+                <colgroup>
+                    <col span="1" style="background-color: var(--highlight-colour); color:var(--text-dark)" width="10%">
+                    <col width="45%" />
+                    <col width="45%" />
+                </colgroup>
+                <tr style="background-color: var(--highlight-colour); color:var(--text-dark);">
+                    <td><b>Time</b></td>
+                    <td><b>Tuesday (5th July)</b></td>
+                    <td><b>Wednesday (6th July)</b></td>
+                </tr>
+                <tr>
+                    <td>09:30</td>
+                    <td rowspan="1"><b>Arrivals and Registration </b></td>
+                    <td rowspan="2"><b>Arrivals with Coffee</b></td>
+                <tr>
+                    <td>09:45</td>
+                    <td><b>Welcome talk</b></td>
+                </tr>
+                <tr>
+                    <td>10:00</td>
+                    <td rowspan="4"><b style="color: var(--highlight-colour)">Keynote Talk </b><br /> <u>Chair:</u>
+                        Carmen
+                        <br /> <u>Speaker:</u> <br> Jane Hutton<br>
+                    </td>
+                    <td rowspan="4"><b style="color: var(--highlight-colour)">Keynote Talk </b><br /> <u>Chair:</u>
+                        Jenny
+                        <br /> <u>Speaker:</u> <br> Cameron Hall<br>
+                    </td>
+                <tr>
+                    <td>10:15</td>
+                </tr>
+                <tr>
+                    <td>10:30</td>
+                </tr>
+                <tr>
+                    <td>10:45</td>
+                </tr>
+                <tr>
+                    <td>11:00</td>
+                    <td rowspan="1"><b>Break</b></td>
+                    <td rowspan="1"><b>Break</b></td>
+                <tr>
+                    <td>11:15</td>
+                    <td rowspan="3"><b style="color: var(--highlight-colour)">Session 1a </b><br /> <u>Chair:</u> Fraser
+                        <br /> <u>Speakers:</u> <br> Abby Barlow,<br> Andrei Sontag
+                    </td>
+                    <td rowspan="3"><b style="color: var(--highlight-colour)">Session 3a </b><br /> <u>Chair:</u>
+                        Matthew
+                        <br /> <u>Speakers:</u> <br> Piotr Morawiecki,<br> Cecilie Andersen
+                    </td>
+                <tr>
+                    <td>11:30</td>
+                </tr>
+                <tr>
+                    <td>11:45</td>
+                </tr>
+                <tr>
+                    <td>12:00</td>
+                    <td rowspan="1"><b>Break</b></td>
+                    <td rowspan="1"><b>Break</b></td>
+                <tr>
+                    <td>12:15</td>
+                    <td rowspan="1"><b style="color: var(--highlight-colour)">Session 1b </b><br /> <u>Chair:</u> Fraser
+                        <br /> <u>Speaker:</u> <br> Theodora Syntaka
+                    </td>
+                    <td rowspan="3"><b style="color: var(--highlight-colour)">Session 3b </b><br /> <u>Chair:</u> Jenny
+                        <br /> <u>Speakers:</u> <br> Eileen Russell,<br> Kat Phillips
+                    </td>
+                <tr>
+                    <td>12:35</td>
+                    <td rowspan="2"><b>Conference Photo</b></td>
+                </tr>
+                <tr>
+                    <td>12:45</td>
+                <tr>
+                    <td>13:00</td>
+                    <td rowspan="4"><b>Lunch</b></td>
+                    <td rowspan="4"><b>Lunch</b></td>
+                <tr>
+                    <td>13:15</td>
+                <tr>
+                    <td>13:30</td>
+                </tr>
+                <tr>
+                    <td>13:45</td>
+                <tr>
+                    <td>14:00</td>
+                    <td rowspan="4"><b style="color: var(--highlight-colour)">Keynote Talk </b><br /> <u>Chair:</u>
+                        Fraser
+                        <br /> <u>Speaker:</u> <br> Radek Erban
+                    </td>
+                    <td rowspan="4"><b style="color: var(--highlight-colour)">Lightning Talks </b><br /><u>Chair:</u>
+                        Jenny
+                        <br /> <u>Speakers:</u> <br> Cohort 8
+                    </td>
+                <tr>
+                    <td>14:15</td>
+                </tr>
+                <tr>
+                    <td>14:30</td>
+                </tr>
+                <tr>
+                    <td>14:45</td>
+                <tr>
+                    <td>15:00</td>
+                    <td rowspan="1"><b>Break</b></td>
+                    <td rowspan="1"><b>Break</b></td>
+                <tr>
+                    <td>15:15</td>
+                    <td rowspan="3"><b style="color: var(--highlight-colour)">Session 2a </b><br /> <u>Chair:</u> Carmen
+                        <br /> <u>Speakers:</u> <br> Carlo Scali,<br> Yi Sheng Lim
+                    </td>
+                    <td rowspan="3"><b style="color: var(--highlight-colour)">Session 4 </b><br /><u>Chair:</u> Seb
+                        <br />
+                        <u>Speakers:</u> <br> Eric Baruch Gutierrez<br> Fengpei Wang
+                    </td>
+                <tr>
+                    <td>15:30</td>
+                <tr>
+                    <td>15:45</td>
+                <tr>
+                    <td>16:00</td>
+                    <td rowspan="1"><b>Break</b></td>
+                    <td rowspan="1"><b>Break</b></td>
+                <tr>
+                    <td>16:15</td>
+                    <td rowspan="3"><b style="color: var(--highlight-colour)">Session 2b </b><br /> <u>Chair:</u>
+                        Matthew<br /> <u>Speakers:</u> <br> Christopher Dean,<br> Josh Inoue</td>
+                    <td rowspan="4"><b style="color: var(--highlight-colour)">Keynote Talk </b><br /> <u>Chair:</u>
+                        Matthew
+                        <br /> <u>Speaker:</u> <br> Katie Steckles<br>
+                    </td>
+                <tr>
+                    <td>16:30</td>
+                <tr>
+                    <td>16:45</td>
+                </tr>
+                <tr>
+                    <td>17:00</td>
+                    <td rowspan="4"><b style="color: var(--highlight-colour)">Poster Session </b></br><u>Chair:</u> Seb,
+                        Jenny, Fraser <br /> </td>
+                <tr>
+                    <td>17:15</td>
+                    <td rowspan="1"> <b>Closing Remarks</b></td>
+                <tr>
+                    <td>17:30</td>
+                <tr>
+                    <td>17:45</td>
+                <tr>
+                    <td>18:00</td>
+                    <td rowspan="4">Walk into town <br /> </td>
+                <tr>
+                    <td>18:15</td>
+                <tr>
+                    <td>18:30</td>
+                <tr>
+                    <td>18:45</td>
+                <tr>
+                    <td>19:00</td>
+                    <td rowspan="1"> <b>In-Person Conference Dinner</b></td>
+                </tr>
+            </table>
 
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+            <h2>KEYNOTE SPEAKERS</h2>
+            <p>This section lists the confirmed speakers, and their titles and abstracts as they become available.</p>
+
+            <div class="speaker">
+                <dt><a href="https://warwick.ac.uk/fac/sci/statistics/staff/academic-research/hutton/">Jane Hutton
+                        (University of Warwick)</a> </dt>
+                <dl>
+                    <dd><b>Title:</b> Epidemics, ethics and uncertainty: the roles of statistics versus mathematics</dd>
+                    <dd><button class="collapsible"> View abstract:</button>
+                        <div class="collapse-content">
+                            A few mathematicians have had considerable influence in the last two years over whether
+                            people
+                            lived and flourished, or died. Some mathematicians have focussed on designing and
+                            implementing
+                            mathematical models which only consider a single illness. Applied statisticians know that it
+                            is
+                            critical to first decide what the question is: "Minimise deaths from Covid-19?" or "Minimise
+                            deaths due to Covid-19 and our decisions this year?" or "Minimise the impact of Covid-19 on
+                            well-being over ten years?" The ethical status of an expert who gives a simple answer to the
+                            first question, without uncertainty or alternatives, will be examined.
+                            <p>Some publications by influential mathematics groups were directly misleading: in
+                                estimating
+                                cases of Covid-19, the assumption, made by prominent mathematicians, that PCR test had
+                                sensitivity of effectively 100%, and specificity of 80-90%, relied on gross misreading
+                                of
+                                the references cited. People were placed under effect house arrest, when, on balance of
+                                probability, they were innocent of covid.
+                            <p>Numbers of "covid" hospitalisations and deaths were quoted without reference to the usual
+                                daily numbers, and contributed to created a climate of fear. Predictions of 6,000 UK
+                                hospital admissions per day in January 2022 relied on the assumption that South African
+                                scientists are incompetent. Their statement that omicron variant of covid-19 has much
+                                lower
+                                admission and death rates was ignored. I will discuss whether this can be construed as
+                                racism, and compare the issues with ideas of racial inequity in UK covid death rates.
+                            </p>
+                            <p>The uncertainty in diagnostic tests, missing information and measurement errors all feed
+                                into
+                                transmitted variation. Even in manufacturing glass beads, the variation from engineering
+                                specification is not simply determined by considering width, for example, alone. Despite
+                                this, mathematical predictions of covid cases were used to justify lockdowns even in
+                                countries where people would starve as a consequence. Some statisticians have tried to
+                                estimate the damage to children's education and wellbeing, and illness and deaths due to
+                                lack of access.
+                            </p>
+                            <p>I argue that such mathematical modelling cannot be justified within virtue,
+                                deontological,
+                                utilitarian or care ethics, though Zoroaster or Nietzsche might be invoked. It is always
+                                necessary to consider the wider context, and the probable consequences of actions, as
+                                explained in the International Statistics Institute Code of Professional Ethics.
+                                Assessment
+                                of the validity of model assumptions, data quality, adequacy of the fit of models and
+                                accuracy of predictions is essential, and essentially statistical.
+                            </p>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="speaker">
+                <dt><a href="https://people.maths.ox.ac.uk/%7Eerban/">Radek Erban (Mathematical Institute, University of
+                        Oxford)</a> </dt>
+                <dl>
+                    <dd><b>Title:</b> Stochastic Modelling of Reaction-Diffusion Processes</dd>
+                    <dd><button class="collapsible"> View abstract:</button>
+                        <div class="collapse-content">
+                            Stochastic reaction-diffusion simulations have been successfully used in a number of
+                            biological
+                            applications, ranging in size from
+                            spatio-temporal modelling in molecular and cell biology to stochastic modelling of groups of
+                            animals. I will discuss connections and
+                            differences between various stochastic reaction-diffusion methodologies, between stochastic
+                            and
+                            deterministic modelling, and some
+                            interesting open mathematical problems. The methods covered will include Brownian dynamics,
+                            compartment-based (lattice-based) models,
+                            and (all-atom and coarse-grained) molecular dynamics simulations.</div>
+                    </dd>
+                </dl>
+            </div>
+            <div class="speaker">
+                <dt><a
+                        href="https://www.bristol.ac.uk/people/person/Cameron-Hall-09d17dde-702b-4bd2-aeed-a6e34cacd5f9/">Cameron
+                        Hall (University of Bristol)</a> </dt>
+                <dl>
+                    <dd><b>Title:</b> Keeping the lights on: Applied mathematics and the future of electricity</dd>
+                    <dd><button class="collapsible"> View abstract:</button>
+                        <div class="collapse-content">
+                            Mathematical modelling and data analysis underpin practically every aspect of power
+                            generation,
+                            storage,
+                            and supply. On a microscopic scale, mathematical techniques are used to optimise the design
+                            of
+                            batteries
+                            and battery materials; on the macroscopic scale, models are used to ensure the stability of
+                            power grids
+                            and develop plans for what to do when the unexpected happens. In this talk, I will take a
+                            tour
+                            through
+                            a few problems where mathematics is making an impact on how we understand and control
+                            electricity,
+                            and where mathematics has the potential to play a major role in the future as we move
+                            towards a
+                            net-zero world. </div>
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="speaker">
+                <dt><a href="https://katiesteckles.co.uk/">Katie Steckles (University of Manchester)</a> </dt>
+                <dl>
+                    <dd><b>Title:</b> Communicating Mathematics</dd>
+                    <dd><button class="collapsible"> View abstract:</button>
+                        <div class="collapse-content">
+                            Mathematics is a difficult subject to communicate, from the abstract ideas and complicated
+                            topics it involves, to the public perception of
+                            maths as a subject that's difficult and boring - but it's so important to engage people with
+                            mathematics, share our love of the subject and
+                            communicate how useful and important maths is. Join mathematician and communicator Katie
+                            Steckles to hear the story of her 12-year career
+                            in outreach, as well as some tips and suggestions for how to get involved in outreach, and
+                            make
+                            your maths communication engaging and
+                            effective.</div>
+                    </dd>
+                </dl>
+            </div>
+
+
+            <h2>STUDENT SPEAKERS</h2>
+            <div>
+                <div class="speaker">
+                    <dt>Abby Barlow</dt>
+                    <dl>
+                        <dd><b>Title:</b> The role of households and neighbourhoods in the early stages of an epidemic
+                        </dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                We explore how the demographic composition of neighbourhoods influences the risk of an
+                                infectious disease outbreak and the early stages
+                                of its spread through the population. Infection spreads via transmission between
+                                individuals; transmission depends on the contacts and
+                                the structure of contacts within a population is influenced by the spatial arrangement
+                                of
+                                individuals. In particular, we might consider
+                                contacts at a household scale, hence distinguishing between the often stronger
+                                transmission
+                                within the household and weaker transmission
+                                within the wider community. The small number of people in each household means that
+                                random
+                                events can be important, and models usually
+                                take a stochastic approach based on Markov processes.
+
+                                <p> In this talk, we will introduce a multi-scale metapopulation framework for a
+                                    population
+                                    of two neighbourhoods of households. We then
+                                    use both analytic and numerical methodologies to understand how household size and
+                                    connectivity between the neighbourhoods influences
+                                    outbreak probability, infection risk and spread of infection between the two
+                                    neighbourhoods. This research can inform surveillance and
+                                    control strategies.
+                            </div>
+                            </p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div>
+                <div class="speaker">
+                    <dt>Andrei Sontag</dt>
+                    <dl>
+                        <dd><b>Title:</b> Awareness spread and the effects of (mis)information on epidemics</dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                The effectiveness of non-pharmaceutical interventions, such as mask-wearing and social
+                                distancing, as control measures for pandemic disease relies upon a
+                                conscientious and well-informed public who are aware of and prepared to follow advice.
+                                Unfortunately, public health messages can be undermined by
+                                competing misinformation and conspiracy theories, spread virally through communities
+                                that
+                                are already distrustful of expert opinion. Models for
+                                awareness spread are widely used in the literature to explore the effects of information
+                                spread on epidemics through coupled feedback dynamics. In this talk,
+                                I will discuss the results presented in our article [1], which investigates a simple
+                                model
+                                of the interaction between disease spread and awareness dynamics
+                                in a heterogeneous population composed of both trusting individuals who seek better
+                                quality
+                                information and will take precautionary measures, and distrusting
+                                individuals who reject better quality information and have overall riskier behaviour. We
+                                show that, as the density of the distrusting population increases,
+                                the model passes through a phase transition to a state in which major outbreaks cannot
+                                be
+                                suppressed. Our work highlights the urgent need for effective interventions
+                                to increase trust and inform the public.
+                                <p> [1] A. Sontag, T. Rogers and C. A. Yates, Misinformation can prevent the suppression
+                                    of
+                                    epidemics, J. R. Soc. Interface, 19:20210668, 2022.
+                            </div>
+                            </p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div>
+                <div class="speaker">
+                    <dt>Theodora Syntaka</dt>
+                    <dl>
+                        <dd><b>Title:</b> Long term behavior: From particle dynamics through kinetic equations to
+                            fractional
+                            diffusion equations</dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                The derivation of continuum equations from a discrete deterministic system of particles
+                                is
+                                of major interest. This is an area of research in mathematical physics originating from
+                                Hilbert's Sixth Problem in 1900. This problem has been approached in two steps using the
+                                Boltzmann equation as a mesoscopic description. The first one is to derive kinetic
+                                equations, such as the Boltzmann equation, from a system of particles and the second is
+                                to
+                                derive continuum equations, such as Navier-Stokes and Euler equations, from the
+                                Boltzmann
+                                equation. Our work is aiming at deriving (fractional) diffusive behaviour from particle
+                                models, which can be split in two separate questions. The first one is to derive linear
+                                Boltzmann equations from a Rayleigh gas particle system with a fat-tailed background in
+                                a
+                                suitable limit of many small particles. As a second one is the derivation of diffusive
+                                behaviour of linear Boltzmann equations by a scaling limit.</div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div>
+                <div class="speaker">
+                    <dt>Carlo Scali </dt>
+                    <dl>
+                        <dd><b>Title:</b> Weakly quenched scaling limit for the one-dimensional, biased random walk on
+                            heavy-tailed conductances</dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                Consider the 1-dimensional, biased random walk on random conductances in the
+                                sub-ballistic
+                                regime; that is, when the law of large numbers
+                                for the position of the random walk is \(X_n/n \to 0\), even if the random walk is
+                                transient
+                                in one direction. This happens when the random
+                                conductances or their inverse have infinite first moment. Under necessary technical
+                                conditions, Berger and Salvi (2020) proved an annealed
+                                scaling limit. I will explain that it is impossible to extend this statement to a
+                                quenched
+                                result, which would correspond to a limit in
+                                distribution for the law of the walk conditioned on the environment, holding for almost
+                                all
+                                environments. This can be shown by proving
+                                that the law of the walk showcases multiple accumulation points in almost all
+                                environments.
+                                I will also discuss that it is possible to
+                                obtain a weakly quenched result, that is a limit conditioned on the environment, holding
+                                for
+                                environments in a set whose probability goes
+                                to \(1\) as \(n \to \infty\).</div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div>
+                <div class="speaker">
+                    <dt>Yi Sheng Lim</dt>
+                    <dl>
+                        <dd><b>Title:</b> An operator approach to high-contrast homogenization</dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                Homogenization refers to the approximation of PDEs with rapidly oscillating coefficients
+                                with a nice
+                                (constant coefficient) PDE. Physically, we can think of a composite that is obtained by
+                                finely mixing
+                                together a "soft" and a "stiff" material. Mathematically, we can study the PDE
+                                \(-\text{div}(a(x/\varepsilon) \nabla u^{\varepsilon} ) = f,\)
+                                where the coefficient matrix is \(a(x)\) is 1-periodic and takes values
+                                \(c_{\text{soft}}
+                                I\) at the "soft"
+                                regions, and \(c_{\text{stiff}} I\) at the "stiff" regions. We want to take
+                                \(\varepsilon
+                                \to 0\).
+
+                                <p>In this talk, we will look at the "high-contrast" case \(c_{\text{soft}} =
+                                    \varepsilon^2\) and \(c_{\text{stiff}} = 1\).
+                                    In other words, there is a loss of ellipticity in the limit. I will explain the main
+                                    ideas behind the operator theoretic
+                                    framework developed by Cherednichenko, Ershova, and Kiselev (2020). The key object
+                                    is
+                                    that of a "boundary triple" in
+                                    the sense of Ryzhov (2009). This gives us approximations in the operator norm, which
+                                    in
+                                    turn gives us direct access to
+                                    the spectrum.</p>
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div>
+                <div class="speaker">
+                    <dt>Christopher Dean </dt>
+                    <dl>
+                        <dd><b>Title:</b> Pólya urns with growing initial compositions</dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                A Pólya urn is a Markov process describing the contents of an urn that contains balls of
+                                d
+                                colours. At every time step, we draw
+                                a ball uniformly for the urn, note its colour, then put it back in the urn along with a
+                                set
+                                of new balls which depend on the colour
+                                drawn. The number of balls of colour j added when colour i is drawn is given by the
+                                (i,j)th
+                                entry of a predetermined replacement
+                                matrix R. For most replacement matrices, the asymptotic behaviour as the number of draws
+                                tend to infinity can be inferred from the
+                                following two canonical cases. If R is the identity matrix, the proportion of each
+                                colour in
+                                the urn tends to a Dirichlet distributed
+                                random variable with parameter given by the urn's initial composition. If R is
+                                irreducible,
+                                this limit is a deterministic vector
+                                that only depends on R. Fluctuations around these limits are also known.
+
+                                <p>Recently, for the identity replacement matrix, results have been shown on the
+                                    asymptotic
+                                    behaviour of the urn when the initial
+                                    number of balls grows together with the number of time steps. In this talk, I will
+                                    show
+                                    new analogous results for the irreducible
+                                    replacement matrix. This includes the asymptotic behaviour of the proportion of each
+                                    colour in the urn and the fluctuations
+                                    around this limit.
+                            </div>
+                            </p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div>
+                <div class="speaker">
+                    <dt>Josh Inoue </dt>
+                    <dl>
+                        <dd><b>Title:</b> Spatio-temporal Change-point Detection</dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                When analysing spatio-temporal data in applications such as in environmental,
+                                ecological, or
+                                epidemiological settings, detecting
+                                abrupt changes over space and or time gives insight into the underlying mechanics of a
+                                system and can have a significant impact
+                                in the interpretation of the evolution and future state of the process. We will look at
+                                methods that analyse spatio-temporal data
+                                and detect changes and discuss how we will overcome issues that arise such as
+                                high-dimensionality, where in particular, we propose
+                                ways of using the spatial information to provide a constraint on the model to reduce the
+                                problem dimension.</div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div>
+                <div class="speaker">
+                    <dt>Piotr Morawiecki</dt>
+                    <dl>
+                        <dd><b>Title:</b> Mathematics of floods: developing an asymptotic framework for the unification
+                            of
+                            rainfall-runoff models</dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                One of the key problems in flood estimation is to predict the flow in the river after an
+                                intensive rainfall. Many physical
+                                and data-based models were constructed to address this problem; however, they are often
+                                based on completely different assumptions
+                                and their limits of applicability remain unknown. During the talk I am going to give an
+                                overview of our work in systematically
+                                developing a rigorous mathematical framework to better understand the relations between
+                                currently used models. We start by
+                                constructing a simple benchmark scenario for coupled surface-subsurface flows. Then we
+                                use
+                                it to better understand the physical
+                                process of river flow formation and compare obtained results to the statistical flood
+                                estimation model recommended for use in
+                                UK. In this way we demonstrate the potential of this mathematical framework as a tool
+                                for
+                                assessing models' assumptions and
+                                limitations, which is not provided by numerical testing traditionally performed by
+                                hydrologists.</div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div>
+                <div class="speaker">
+                    <dt>Cecilie Andersen </dt>
+                    <dl>
+                        <dd><b>Title:</b> Selection mechanisms and complex singularities in the falling jet problem</dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                The precise characterisation of the set of steady-state solutions for a rising bubble in
+                                a
+                                tube remains an open
+                                problem. Here, we consider a two-dimensional bubble which rises, under the influence of
+                                gravity and at constant
+                                velocity, in a tube filled with an ideal fluid. When surface tension is included, it is
+                                known that the velocity
+                                of the bubble must be selected from a countably infinite set of possible values. This is
+                                similar to the selection
+                                mechanism in the classic Saffman-Taylor viscous fingering problem but the introduction
+                                of
+                                gravity complicates the
+                                analysis of the rising bubble. In this talk, we discuss the surprising complexity that
+                                characterises the complex
+                                analytic structure of the zero surface-tension case, and also the challenges of
+                                resolving
+                                this selection mechanism
+                                in the small surface tension limit.</div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+
+            <div>
+                <div class="speaker">
+                    <dt>Eileen Russell </dt>
+                    <dl>
+                        <dd><b>Title:</b> Faraday Wave-Droplet Dynamics</dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                A millimetric droplet of silicon oil will bounce periodically on a suitably vibrating
+                                bath.
+                                Increasing the amplitude of the vibrations, the droplet walks across the surface and as
+                                the
+                                amplitude increases further the droplet's motion becomes chaotic. This system is of
+                                interest
+                                to many mathematicians and physicists as it bears resemblance to the quantum realm.
+                                Indeed,
+                                the droplet has both a mass and a wavefield which is compared to quantum mechanic's
+                                wave-particle duality hypothesis. Many physicists have succeeded in creating analogues
+                                between this system and common features of quantum mechanics such as tunnelling,
+                                diffraction, interference, and quantised orbits.
+                                <p> In this talk, we discuss a complex fluid dynamics model used to depict this system.
+                                    We
+                                    perform a number of reductions in order to simplify the mathematical complexity of
+                                    the
+                                    system whilst maintaining the principal dynamics of the system. We discuss the
+                                    stability
+                                    of the steady states that arise in our models and compare and contrast our results
+                                    with
+                                    the more in-depth models.
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div>
+                <div class="speaker">
+                    <dt>Kat Phillips </dt>
+                    <dl>
+                        <dd><b>Title:</b> Lubrication layer cushioned capillary-scale rebound dynamics</dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                A droplet falling towards a free surface must first make its way through a layer of air
+                                acting as a barrier
+                                between the two liquids, preventing coalescence. In a millimetric regime, the capillary
+                                action of the free
+                                surface may dominate the dynamics of the interaction and is able to provide an upward
+                                kick
+                                to rebound the
+                                droplet prior the full evacuation of the air layer, which would have allowed
+                                coalescence. In
+                                such a regime,
+                                the trapped air acts as a lubrication layer between the impactor and the free surface.
+                                To
+                                leading order,
+                                such a millimetric droplet acts as a rigid sphere, allowing developments of numerical
+                                models
+                                for solid-liquid
+                                impacts to be a reasonable approximation of droplet dynamics. In this talk, we present
+                                the
+                                development of
+                                a 2D model of a millimetric solid sphere impacting on a free surface. By taking a
+                                multi-scale approach,
+                                we include the air layer as a dynamical component in the system through coupling an
+                                asymptotic derivation
+                                of the leading order problem, with psuedo-spectral methods to model the behaviour of the
+                                free surface,
+                                and smaller scale lubrication regime for the dynamics of the cushioning layer.</div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div>
+                <div class="speaker">
+                    <dt>Eric Baruch Gutierrez </dt>
+                    <dl>
+                        <dd><b>Title:</b> Random Primal-Dual Method with applications to Parallel MRI</dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                Stochastic Primal-Dual Hybrid Gradient, or SPDHG, is an algorithm proposed by Chambolle
+                                et
+                                al. to efficiently solve a wide class
+                                of nonsmooth large-scale optimization problems. Recently we proved its almost sure
+                                convergence for all convex functionals. In
+                                addition, we apply SPDHG to parallel Magnetic Resonance Imaging reconstruction.
+                                Numerical
+                                results suggest significantly faster
+                                convergence for SPDHG than its deterministic counterpart. Furthermore, we'll see how the
+                                physical properties of MRI models might
+                                give us a clue on how to optimize our random process.</div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div>
+                <div class="speaker">
+                    <dt>Fengpei Wang </dt>
+                    <dl>
+                        <dd><b>Title:</b> What can we do with the large scale optimal transport problem?</dd>
+                        <dd><button class="collapsible"> View abstract:</button>
+                            <div class="collapse-content">
+                                What can we do with the large scale optimal transport problem? Optimal transport (OT)
+                                problem is to find the joint distribution of
+                                two distributions that minimises the total cost. By adding an entropic regularisation
+                                term,
+                                the problem becomes a differentiable and
+                                convex optimization problem. For two discrete distributions, this regularised OT problem
+                                can
+                                be solved efficiently by using the Sinkhorn
+                                algorithm. However, it is still challenging to solve the large-scale OT and the
+                                non-discrete
+                                OT.
+                                In this talk, we will introduce the Online Sinkhorn algorithm (Mensch et al. 2020) which
+                                is
+                                designed for the non-discrete OT problems,
+                                and the low rank formulations for the large-scale OT problems.
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- ############################################################### -->
+        <div class="row" id="organisers">
+            <h2>ORGANISERS</h2>
+            <p>The 2022 SAMBa conference is being organised by five SAMBa Cohort 7 PhD students. If you have any
+                questions,
+                please feel free to contact any of us using the information below.
+            </p>
+
+            <div class="cards">
+                <div class="card">
+                    <img src="images/profile-carmen.png" alt="Picture of Carmen, one of the conference organisers."
+                        style="width:100%">
+                    <div class="container">
+                        <h4><b>Carmen van-de-l'Isle</b></h4>
+                        <p><a href="mailto:ccvdli20@bath.ac.uk" class="clean-link">ccvdli20@bath.ac.uk</a></p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/profile-fraser.png" alt="Picture of Fraser, one of the conference organisers."
+                        style="width:100%">
+                    <div class="container">
+                        <h4><b>Fraser Waters</b></h4>
+                        <p><a href="mailto:frw22@bath.ac.uk" class="clean-link">frw22@bath.ac.uk</a></p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/profile-jenny.png" alt="Picture of Jenny, one of the conference organisers."
+                        style="width:100%">
+                    <div class="container">
+                        <h4><b>Jenny Power</b></h4>
+                        <p><a href="mailto:jip30@bath.ac.uk" class="clean-link">jip30@bath.ac.uk</a></p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/profile-matthew.png" alt="Picture of Matthew, one of the conference organisers."
+                        style="width:100%">
+                    <div class="container">
+                        <h4><b>Matthew Pawley</b></h4>
+                        <p><a href="mailto:mtp34@bath.ac.ukk" class="clean-link">mtp34@bath.ac.uk</a></p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="images/profile-seb.png" alt="Picture of Seb, one of the conference organisers."
+                        style="width:100%">
+                    <div class="container">
+                        <h4><b>Seb Scott</b></h4>
+                        <p><a href="mailto:ss2767@bath.ac.uk" class="clean-link">ss2767@bath.ac.uk</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- ############################################################### -->
+    <div class="footer">
+        <div class="container">
+            Last updated May 2022
+        </div>
+    </div>
+
+    <!-- End of page content-->
+    <!-- ############################################################### -->
+
+
+    <!-- Collapsable navigation menu -->
+    <script>
+        const menu = document.querySelector('#mobile-menu');
+        const menuLinks = document.querySelector('.nav-menu');
+
+        menu.addEventListener('click', function () {
+            menu.classList.toggle('is-active');
+            menuLinks.classList.toggle('active');
+        })
+        menuLinks.addEventListener('click', function () {
+            menu.classList.toggle('is-active');
+            menuLinks.classList.toggle('active');
+        })
+    </script>
+
+
+    <!-- Collapsable button -->
+    <script>
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        }
+    </script>
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 </html>
