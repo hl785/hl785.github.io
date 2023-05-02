@@ -2,17 +2,7 @@
 
 <style>
   .text {
-    fill: rgb(20%,20%,20%);
-    <!-- fill: rgb(34.899902%, 28.999329%, 25.898743%); -->
-    <!-- fill: rgb(0%, 0%, 0%); -->
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .text {
-      fill: rgb(80%,80%,80%);
-      <!-- fill: rgb(88.999939%, 86.698914%, 82.398987%); -->
-      fill: rgb(100%, 100%, 100%);
-    }
+    fill: rgb(100%, 100%, 100%);
   }
 </style>
 
