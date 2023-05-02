@@ -44,7 +44,7 @@
         :link:active,
         :visited:active {
             background: transparent;
-            color: var(--dark-colour);
+            color: var(--light-colour);
             text-decoration: underline;
         }
 
@@ -53,7 +53,7 @@
         /* Schedule table */
         table,
         td {
-            border: 2px solid var(--black-colour);
+            border: 2px solid var(--white-colour);
             border-collapse: collapse;
             text-align: center;
         }
@@ -213,32 +213,7 @@
         .blur {
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
-            color: var(--black-colour)
-        }
-
-        @media (prefers-color-scheme: dark) {
-
-            :link:hover,
-            :visited:hover,
-            :link:active,
-            :visited:active {
-                background: transparent;
-                color: var(--light-colour);
-                text-decoration: underline;
-            }
-
-            .blur {
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
-                color: var(--white-colour)
-            }
-
-            table,
-            td {
-                border: 2px solid var(--white-colour);
-                border-collapse: collapse;
-                text-align: center;
-            }
+            color: var(--white-colour)
         }
 
         /* Responsive layout - when the screen is less than 1000px wide,  */
@@ -406,14 +381,23 @@
 
             <h5 class="w3-center w3-padding-8"><span class="w3-tag w3-wide">SPONSORED BY</span></h5>
             <div class="sponsors blur">
-                <a href="https://www.diamond.ac.uk/" class="center" style="text-align:center"> <img
+                <a href="https://www.diamond.ac.uk/" class="center">
+                    <img src="images/dlsLogo.png" alt="Diamond Light Source Logo" style="width:auto; height:auto; max-width:350px; max-height:80px">
+                </a>
+                <a href="https://www.roche.com/" class="center">
+                    <img src="images/rocheLogo.svg" alt="Roche Logo" style="width:auto; height:auto; max-width:350px; max-height:80px">
+                </a>
+                <a href="https://mayden.co.uk/" class="center">
+                    <img src="images/maydenLogo.svg" alt="Mayden logo" style="width:auto; height:auto; max-width:350px; max-height:80px">
+                </a>
+                <!-- <a href="https://www.diamond.ac.uk/" class="center" style="text-align:center"> <img
                         src="images/dlsLogo.png" alt="Diamond Light Source Logo."
                         style="width:auto; height:auto; max-height:150px; padding:.2em; vertical-align: middle; position: relative">
                 </a>
                 <a href="https://www.roche.com/" class="center" style="text-align:center"> <img
                         src="images/rocheLogo.svg" alt="Roche Logo."
                         style="width:auto; height:auto; max-height:150px; padding:.2em; vertical-align: middle; position: relative">
-                </a>
+                </a> -->
             </div>
 
 
@@ -437,15 +421,15 @@
                 The conference will be hosted in the Wolfson Lecture Theatre, 4 West room 1.7, the Mathematical Sciences
                 department of the University of Bath
             </p>
-            <dd class="w3-card w3-center w3-padding-24 blur">
-                <address>
+            <p class="w3-card w3-center w3-padding-24 blur">
+                <em>
                     Department of Mathematical Sciences,<br>
                     University of Bath,<br>
                     Claverton Down,<br>
                     Bath, BA2 7AY,<br>
                     United Kingdom<br>
-                </address>
-            </dd>
+                </em>
+            </p>
             <p class="w3-card w3-center w3-padding-24 blur">
                 Travel information for getting to the University of Bath campus can be found on the
                 <a href="https://www.bath.ac.uk/topics/travel-advice/">University of Bath Travel Advice page.</a>
