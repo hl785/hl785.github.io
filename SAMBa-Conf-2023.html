@@ -696,16 +696,27 @@
                     <dt>Pablo Arratia Lopez</dt>
                     <dl>
                         <dd>
-                            <b>Title:</b> Zombie Statistics: Surviving the Apocalypse of Misleading Data
+                            <b>Title:</b> A brief introduction to Physics-Informed Neural Networks and how to solve
+                            image registration problems with WarpPINN
                         </dd>
                         <dd><button class="collapsible blur"> View abstract</button>
                             <div class="collapse-content">
-                                Brace yourself for the statistical survival guide you never knew you needed: Zombie
-                                Statistics! In this thrilling talk, we'll navigate through a post-apocalyptic wasteland
-                                of misleading data, where correlations lurk in the shadows, outliers roam freely, and
-                                causation is a distant memory. Arm yourself with statistical weaponry as we uncover the
-                                tricks and traps of undead data, ensuring you emerge unscathed from the statistical
-                                zombie apocalypse.
+                                In this talk, I will introduce the idea of Physics-Informed Neural Networks (PINNs) and
+                                the related Deep-Ritz Method, two novel approaches where the deep learning machinery is
+                                employed for solving Partial Differential Equations, PDE-Constrained Optimization
+                                Problems and Inverse Problems with physical constraints.
+                                <br> <br>
+                                The application I will show is in cardiac imaging, where the goal is to determine the
+                                deformation field of the heart during the cardiac cycle from magnetic resonance images.
+                                Solving this inverse problem is very useful since allows for assessing cardiac diseases
+                                from non-invasive measurements (a quite challenging task). To solve this problem, we
+                                propose WarpPINN, a physics-informed neural network designed to solve image registration
+                                problems with a hyper-elastic regularizer. The network aims to approximate the
+                                deformation field, then, it takes as input a point in the domain of the reference frame
+                                and some time t, and outputs the new position of the point at the time t. The
+                                physics-informed part comes from the nearly incompressible behavior of the heart during
+                                the cardiac cycle: we want the determinant of the jacobian of the transformation to be
+                                close to 1.
                             </div>
                         </dd>
                     </dl>
