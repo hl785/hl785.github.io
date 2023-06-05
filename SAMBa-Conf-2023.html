@@ -739,16 +739,31 @@
                     <dt>Dan Miles</dt>
                     <dl>
                         <dd>
-                            <b>Title:</b> The Secret Lives of Polynomials: Unveiling Their Scandalous Affairs
+                            <b>Title:</b> Encouraging Sparsity and Similarity Across Multiple Covariate-Adjusted
+                            Gaussian Graphical Models
                         </dd>
                         <dd><button class="collapsible blur"> View abstract</button>
                             <div class="collapse-content">
-                                Get ready for a scandalous exposé on the hidden lives of polynomials! This provocative
-                                talk reveals the steamy affairs, secret identities, and illicit connections that
-                                polynomials engage in behind closed parentheses. Prepare to be shocked as we delve into
-                                the world of irreducible factors, synthetic division scandals, and the mysterious roots
-                                that lie beneath the surface. Mathematicians beware—your innocent perception of
-                                polynomials is about to be shattered.
+                                Across various applications, many data sets are high-dimensional in nature,
+                                characterised by an inherent graphical structure, amongst other linear relationships.
+                                These are often represented through a Markovian conditional dependence graph upon a
+                                sparse adjacency matrix, where sparsity describes many zero (insignificant) off-diagonal
+                                elements. Traditional likelihood approaches, relying on arbitrarily large sample sizes,
+                                do not account for sparsity well, thus requiring some form of heuristic or penalty. A
+                                multivariate Gaussian graphical model is a standard choice for continuous data, where a
+                                LASSO one-norm penalty can be employed to shrink the off-diagonal precision matrix
+                                elements. However, a complication arises when the distribution is derived from sparse
+                                covariates, and further, there may be multiple instances of the model, in the form of
+                                adjacent samples, each having their own parameter set. A Fused-LASSO-like penalty is
+                                desired to encourage parameter similarity across such adjacent samples, utilising the
+                                conditional covariate dependence structure as a regression. Fortunately, through a novel
+                                block-matrix formulation, it is shown that the conditional model can be transformed and
+                                penalised through a generalisation of the LASSO one-norm penalty (aptly named the
+                                Generalised LASSO). Results show that the prescribed optimisation offers accurate
+                                shrinkage for varying dimensionality and finite sample size, but increasing this also
+                                demonstrates asymptotic consistency. This presentation aims to outline the theoretical
+                                underpinning behind this novel regression approach, the computational implementation,
+                                and results from simulations undertaken.
                             </div>
                         </dd>
                     </dl>
